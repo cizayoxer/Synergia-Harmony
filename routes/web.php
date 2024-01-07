@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnnonceController;
 use App\Http\Controllers\LoisirController;
 use App\Http\Controllers\ProfesseurController;
 use App\Http\Controllers\ServiceController;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 #----------# Utilisateurs #---------------#
 Route::get('/users', [UserController::class, "getUsers"]);
 Route::get('/user/{userById}', [UserController::class, "getUserById"]);
-Route::post('/user/add/{userId}', [UserController::class, "addUser"]);
+Route::post('/user/add', [UserController::class, "addUser"]);
 Route::put('/user/modify/{userId}', [UserController::class, "modifyUser"]);
 Route::delete('/user/delete/{userId}', [UserController::class, 'deleteUser']);
 
@@ -33,3 +34,9 @@ Route::get('/service/{serviceByid}', [ServiceController::class,"getServiceById"]
 #----------# Cours #---------------#
 Route::get('/cours', [ServiceController::class, "getServices"]);
 Route::get('/cour/{courByid}', [ServiceController::class,"getServiceById"]);
+
+#----------# Annonce #---------------#
+Route::get('/annonces', [ServiceController::class, "getannonces"]);
+Route::get('/annonce/{annonceByid}', [ServiceController::class,"getannonceById"]);
+Route::delete('/annonce/delete/{annonceId}', [AnnonceController::class, 'deleteAnnonce']);
+Route::post('/annonce/add', [AnnonceController::class, 'addAnnonce']);
