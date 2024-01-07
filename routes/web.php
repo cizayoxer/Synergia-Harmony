@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\Route;
 
 #----------# Utilisateurs #---------------#
 Route::get('/users', [UserController::class, "getUsers"]);
-Route::get('/user/{userId}', [UserController::class, "getUserById"]);
+Route::get('/user/{userById}', [UserController::class, "getUserById"]);
+Route::post('/user/add/{userId}', [UserController::class, "addUser"]);
+Route::put('/user/modify/{userId}', [UserController::class, "modifyUser"]);
+Route::delete('/user/delete/{userId}', [UserController::class, 'deleteUser']);
 
 #----------# Sports #---------------#
 Route::get('/sports', [SportController::class, "getSports"]);
@@ -26,3 +29,7 @@ Route::get('/professeur/{profByid}', [ProfesseurController::class, "getProfById"
 #----------# Services #---------------#
 Route::get('/services', [ServiceController::class, "getServices"]);
 Route::get('/service/{serviceByid}', [ServiceController::class,"getServiceById"]);
+
+#----------# Cours #---------------#
+Route::get('/cours', [ServiceController::class, "getServices"]);
+Route::get('/cour/{courByid}', [ServiceController::class,"getServiceById"]);
