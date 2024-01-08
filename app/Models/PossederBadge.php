@@ -9,30 +9,30 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class REL2
+ * Class POSSÉDERBADGE
  * 
- * @property int $IDSPECIALITE
+ * @property int $IDBADGE
  * @property int $IDUTILISATEUR
  * 
- * @property CLASSE $c_l_a_s_s_e
+ * @property BADGE $b_a_d_g_e
  * @property ETUDIANT $e_t_u_d_i_a_n_t
  *
  * @package App\Models
  */
-class REL2 extends Model
+class POSSÉDERBADGE extends Model
 {
-	protected $table = 'REL_2';
+	protected $table = 'POSSÉDERBADGE';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'IDSPECIALITE' => 'int',
+		'IDBADGE' => 'int',
 		'IDUTILISATEUR' => 'int'
 	];
 
-	public function c_l_a_s_s_e()
+	public function b_a_d_g_e()
 	{
-		return $this->belongsTo(CLASSE::class, 'IDSPECIALITE');
+		return $this->belongsTo(BADGE::class, 'IDBADGE');
 	}
 
 	public function e_t_u_d_i_a_n_t()

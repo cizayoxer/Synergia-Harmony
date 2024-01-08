@@ -10,22 +10,26 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Covoiturage
+ * Class COVOITURAGE
  * 
  * @property int $IDSERVICE
  * @property string $LIEUDEPART
  * @property string $LIEUARRIVE
  * @property Carbon $DATECOVOIT
+ * 
+ * @property SERVICE $s_e_r_v_i_c_e
  *
  * @package App\Models
  */
-class Covoiturage extends Model
+class COVOITURAGE extends Model
 {
-	protected $table = 'covoiturage';
+	protected $table = 'COVOITURAGE';
 	protected $primaryKey = 'IDSERVICE';
+	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
+		'IDSERVICE' => 'int',
 		'DATECOVOIT' => 'datetime'
 	];
 
@@ -34,4 +38,9 @@ class Covoiturage extends Model
 		'LIEUARRIVE',
 		'DATECOVOIT'
 	];
+
+	public function s_e_r_v_i_c_e()
+	{
+		return $this->belongsTo(SERVICE::class, 'IDSERVICE');
+	}
 }

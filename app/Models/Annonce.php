@@ -10,7 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Annonce
+ * Class ANNONCE
  * 
  * @property int $IDANNONCE
  * @property int $IDSERVICE
@@ -23,12 +23,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $DATEPUBLICATIONANNONCE
  * @property Carbon $DATETRANSACTION
  * @property Carbon $DATEPREVUE
+ * 
+ * @property ETUDIANT $e_t_u_d_i_a_n_t
+ * @property MODERATEUR $m_o_d_e_r_a_t_e_u_r
+ * @property SERVICE $s_e_r_v_i_c_e
  *
  * @package App\Models
  */
-class Annonce extends Model
+class ANNONCE extends Model
 {
-	protected $table = 'annonce';
+	protected $table = 'ANNONCE';
 	protected $primaryKey = 'IDANNONCE';
 	public $timestamps = false;
 
@@ -54,4 +58,19 @@ class Annonce extends Model
 		'DATETRANSACTION',
 		'DATEPREVUE'
 	];
+
+	public function e_t_u_d_i_a_n_t()
+	{
+		return $this->belongsTo(ETUDIANT::class, 'IDUTILISATEUR_1');
+	}
+
+	public function m_o_d_e_r_a_t_e_u_r()
+	{
+		return $this->belongsTo(MODERATEUR::class, 'IDUTILISATEUR_2');
+	}
+
+	public function s_e_r_v_i_c_e()
+	{
+		return $this->belongsTo(SERVICE::class, 'IDSERVICE');
+	}
 }

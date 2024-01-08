@@ -9,21 +9,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class EchangeCompetence
+ * Class ECHANGECOMPETENCE
  * 
  * @property int $IDSERVICE
  * @property int $IDMATIERE
  * @property int $IDNIVEAU
+ * 
+ * @property COUR $c_o_u_r
+ * @property NIVEAU $n_i_v_e_a_u
+ * @property SERVICE $s_e_r_v_i_c_e
  *
  * @package App\Models
  */
-class EchangeCompetence extends Model
+class ECHANGECOMPETENCE extends Model
 {
-	protected $table = 'echange_competence';
+	protected $table = 'ECHANGE_COMPETENCE';
 	protected $primaryKey = 'IDSERVICE';
+	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
+		'IDSERVICE' => 'int',
 		'IDMATIERE' => 'int',
 		'IDNIVEAU' => 'int'
 	];
@@ -32,4 +38,19 @@ class EchangeCompetence extends Model
 		'IDMATIERE',
 		'IDNIVEAU'
 	];
+
+	public function c_o_u_r()
+	{
+		return $this->belongsTo(COUR::class, 'IDMATIERE');
+	}
+
+	public function n_i_v_e_a_u()
+	{
+		return $this->belongsTo(NIVEAU::class, 'IDNIVEAU');
+	}
+
+	public function s_e_r_v_i_c_e()
+	{
+		return $this->belongsTo(SERVICE::class, 'IDSERVICE');
+	}
 }

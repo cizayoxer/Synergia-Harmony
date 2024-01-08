@@ -6,20 +6,23 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Permission
+ * Class PERMISSION
  * 
  * @property int $IDPERMISSION
  * @property string $LIBELLEPERMISSION
  * @property int $NIVEAUPERMISSION
+ * 
+ * @property Collection|AUTORISER[] $a_u_t_o_r_i_s_e_r_s
  *
  * @package App\Models
  */
-class Permission extends Model
+class PERMISSION extends Model
 {
-	protected $table = 'permissions';
+	protected $table = 'PERMISSIONS';
 	protected $primaryKey = 'IDPERMISSION';
 	public $timestamps = false;
 
@@ -31,4 +34,9 @@ class Permission extends Model
 		'LIBELLEPERMISSION',
 		'NIVEAUPERMISSION'
 	];
+
+	public function a_u_t_o_r_i_s_e_r_s()
+	{
+		return $this->hasMany(AUTORISER::class, 'IDPERMISSION');
+	}
 }
