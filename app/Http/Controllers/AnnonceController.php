@@ -34,7 +34,7 @@ class AnnonceController extends Controller
 
     function addAnnonce(Request $request)
     {
-        // Validation des données
+
         $request->validate([
             'IDSERVICE' => 'required',
             'IDUTILISATEUR' => 'required',
@@ -56,6 +56,20 @@ class AnnonceController extends Controller
         } catch (\Exception $e) {
 
             return response()->json(['error' => "Erreur lors de la création de l'annonce."], 500);
+        }
+    }
+
+    public function getLastAnnonces(Request $request, int $NombreAnnonce = 10)
+    {
+        try {
+
+            $annonces = Annonce::orderBy('DATEPUBLICATIONANNONCE', 'desc')
+                ->take($NombreAnnonce)
+                ->get();
+
+            return response()->json($annonces, 200, [], JSON_UNESCAPED_UNICODE);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erreur lors de la récupération des annonces.'], 500);
         }
     }
 

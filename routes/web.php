@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnnonceController;
+use App\Http\Controllers\CourController;
 use App\Http\Controllers\LoisirController;
 use App\Http\Controllers\ProfesseurController;
 use App\Http\Controllers\ServiceController;
@@ -32,11 +33,12 @@ Route::get('/services', [ServiceController::class, "getServices"]);
 Route::get('/service/{serviceByid}', [ServiceController::class,"getServiceById"]);
 
 #----------# Cours #---------------#
-Route::get('/cours', [ServiceController::class, "getServices"]);
-Route::get('/cour/{courByid}', [ServiceController::class,"getServiceById"]);
+Route::get('/cours', [CourController::class, "getCours"]);
+Route::get('/cour/{courByid}', [CourController::class,"getCourById"]);
 
 #----------# Annonce #---------------#
-Route::get('/annonces', [ServiceController::class, "getannonces"]);
-Route::get('/annonce/{annonceByid}', [ServiceController::class,"getannonceById"]);
+Route::get('/annonces', [AnnonceController::class, "getannonces"]);
+Route::get('/annonce/{annonceByid}', [AnnonceController::class,"getannonceById"]);
 Route::delete('/annonce/delete/{annonceId}', [AnnonceController::class, 'deleteAnnonce']);
 Route::post('/annonce/add', [AnnonceController::class, 'addAnnonce']);
+Route::get('/annonces/last', [AnnonceController::class, "getLastAnnonces"]);
