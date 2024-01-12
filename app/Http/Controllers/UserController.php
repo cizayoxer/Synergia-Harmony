@@ -33,7 +33,7 @@ class UserController extends Controller
         $user = new Utilisateur();
         $user->NOMUTILISATEUR = $request->NOMUTILISATEUR;
         $user->PRENOMUTILISATEUR = $request->PRENOMUTILISATEUR;
-        $user->MOTDEPASSE = $request->MOTDEPASSE;
+        $user->MOTDEPASSE = bcrypt($request->MOTDEPASSE);
         $user->SOLDE = 10;
         $user->EMAILUTILISATEUR = $request->EMAILUTILISATEUR;
         $user->save();
@@ -42,7 +42,7 @@ class UserController extends Controller
 
     public function modifyUser(Request $request, $userId)
     {
-        // Valider les données de la requête
+
         $this->validate($request, [
             'NOMUTILISATEUR' => 'required|string',
             'PRENOMUTILISATEUR' => 'required|string',
@@ -50,24 +50,19 @@ class UserController extends Controller
             'EMAILUTILISATEUR' => 'required|email',
         ]);
 
-        // Récupérer l'utilisateur existant par son ID
         $user = Utilisateur::find($userId);
 
         if (!$user) {
-            // Gérer le cas où l'utilisateur n'est pas trouvé
             return response()->json(['message' => 'Utilisateur non trouvé'], 404);
         }
 
-        // Mettre à jour les informations de l'utilisateur
         $user->NOMUTILISATEUR = $request->NOMUTILISATEUR;
         $user->PRENOMUTILISATEUR = $request->PRENOMUTILISATEUR;
-        $user->MOTDEPASSE = $request->MOTDEPASSE;
+        $user->MOTDEPASSE = bcrypt($request->MOTDEPASSE);
         $user->EMAILUTILISATEUR = $request->EMAILUTILISATEUR;
 
-        // Enregistrer les modifications dans la base de données
         $user->save();
 
-        // Retourner la réponse JSON avec les données mises à jour de l'utilisateur
         return response()->json($user, 200, [], JSON_UNESCAPED_UNICODE);
     }
 
@@ -88,11 +83,14 @@ class UserController extends Controller
     {
         $user = Utilisateur::find($userId);
         if (!$user) {
-            // Gérer le cas où l'utilisateur n'est pas trouvé
             return response()->json(['message' => 'Utilisateur non trouvé'], 404);
         }
+        if($request->post("SOLDE", 0)<0 || $request->post("SOLDE", 0)>10000)
+        {
+            return response()->json(['message' => 'Borne dépassé'], 404);
+        }
 
-        $user->SOLDE += $request->SOLDE;
+        $user->SOLDE +=  $request->post("SOLDE", 0);
         $user->save();
 
         return response()->json($user, 200, [], JSON_UNESCAPED_UNICODE);
@@ -102,11 +100,14 @@ class UserController extends Controller
     {
         $user = Utilisateur::find($userId);
         if (!$user) {
-            // Gérer le cas où l'utilisateur n'est pas trouvé
             return response()->json(['message' => 'Utilisateur non trouvé'], 404);
         }
+        if($request->post("SOLDE", 0)<0 || $request->post("SOLDE", 0)>10000)
+        {
+            return response()->json(['message' => 'Borne dépassé'], 404);
+        }
 
-        $user->SOLDE -= $request->SOLDE;
+        $user->SOLDE -=  $request->post("SOLDE", 0);
         $user->save();
 
         return response()->json($user, 200, [], JSON_UNESCAPED_UNICODE);

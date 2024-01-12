@@ -61,8 +61,8 @@ Route::get('/cour/{courByid}', [CourController::class,"getCourById"]);
 
 
 #----------# Annonce #---------------#
-Route::get('/annonces', [AnnonceController::class, "getannonces"]);
-Route::get('/annonce/{annonceByid}', [AnnonceController::class,"getannonceById"]);
+Route::get('/annonces', [AnnonceController::class, "getAnnonces"]);
+Route::get('/annonce/{annonceByid}', [AnnonceController::class,"getAnnonceById"]);
 Route::delete('/annonce/delete/{annonceId}', [AnnonceController::class, 'deleteAnnonce']);
 Route::post('/annonce/add', [AnnonceController::class, 'addAnnonce']);
 Route::get('/annonces/last', [AnnonceController::class, "getLastAnnonces"]);
