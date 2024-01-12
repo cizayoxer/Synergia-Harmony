@@ -31,26 +31,34 @@ Route::get('/user/{userById}', [UserController::class, "getUserById"]);
 Route::post('/user/add', [UserController::class, "addUser"]);
 Route::put('/user/modify/{userId}', [UserController::class, "modifyUser"]);
 Route::delete('/user/delete/{userId}', [UserController::class, 'deleteUser']);
+Route::put('/user/crediter/{userId}', [UserController::class, "addMonnaie"]);
+Route::put('/user/verser/{userId}', [UserController::class, "removeMonnaie"]);
+
 
 #----------# Sports #---------------#
 Route::get('/sports', [SportController::class, "getSports"]);
 Route::get('/sport/{sportById}', [SportController::class, "getSportById"]);
 
+
 #----------# Loisirs #---------------#
 Route::get('/loisirs', [LoisirController::class, "getLoisirs"]);
 Route::get('/loisir/{loisirByid}', [LoisirController::class, "getLoisirById"]);
+
 
 #----------# Professeurs #---------------#
 Route::get('/professeurs', [ProfesseurController::class, "getProfs"]);
 Route::get('/professeur/{profByid}', [ProfesseurController::class, "getProfById"]);
 
+
 #----------# Services #---------------#
 Route::get('/services', [ServiceController::class, "getServices"]);
 Route::get('/service/{serviceByid}', [ServiceController::class,"getServiceById"]);
 
+
 #----------# Cours #---------------#
 Route::get('/cours', [CourController::class, "getCours"]);
 Route::get('/cour/{courByid}', [CourController::class,"getCourById"]);
+
 
 #----------# Annonce #---------------#
 Route::get('/annonces', [AnnonceController::class, "getannonces"]);

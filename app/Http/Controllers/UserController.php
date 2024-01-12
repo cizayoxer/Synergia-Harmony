@@ -84,6 +84,34 @@ class UserController extends Controller
         return response()->json(['message' => 'Utilisateur supprimé avec succès.']);
     }
 
+    public function addMonnaie(Request $request, $userId)
+    {
+        $user = Utilisateur::find($userId);
+        if (!$user) {
+            // Gérer le cas où l'utilisateur n'est pas trouvé
+            return response()->json(['message' => 'Utilisateur non trouvé'], 404);
+        }
+
+        $user->SOLDE += $request->SOLDE;
+        $user->save();
+
+        return response()->json($user, 200, [], JSON_UNESCAPED_UNICODE);
+    }
+
+    public function removeMonnaie(Request $request, $userId)
+    {
+        $user = Utilisateur::find($userId);
+        if (!$user) {
+            // Gérer le cas où l'utilisateur n'est pas trouvé
+            return response()->json(['message' => 'Utilisateur non trouvé'], 404);
+        }
+
+        $user->SOLDE -= $request->SOLDE;
+        $user->save();
+
+        return response()->json($user, 200, [], JSON_UNESCAPED_UNICODE);
+    }
+
 
 
 
