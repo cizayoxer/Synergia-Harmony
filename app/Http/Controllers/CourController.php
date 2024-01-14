@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class CourController extends Controller
 {
-    public function getCours(Request $request)
+    public function getCours()
     {
         $cours = Cour::all();
 

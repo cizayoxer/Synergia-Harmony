@@ -66,3 +66,6 @@ Route::get('/annonce/{annonceByid}', [AnnonceController::class,"getAnnonceById"]
 Route::delete('/annonce/delete/{annonceId}', [AnnonceController::class, 'deleteAnnonce']);
 Route::post('/annonce/add', [AnnonceController::class, 'addAnnonce']);
 Route::get('/annonces/last', [AnnonceController::class, "getLastAnnonces"]);
+
+#----------# Accueil #---------------#
+Route::get('/accueil', [AnnonceController::class, "getAccueil"]);

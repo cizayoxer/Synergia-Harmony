@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fd88e3753d86e70b82b5a867446666f9",
+    "content-hash": "64061a563934023149d102b43a3a6d38",
     "packages": [
         {
             "name": "brick/math",
@@ -7051,16 +7051,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "10.5.3",
+            "version": "10.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "6fce887c71076a73f32fd3e0774a6833fc5c7f19"
+                "reference": "ab9a20b623b235165d24faa9d1da925cb54939c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6fce887c71076a73f32fd3e0774a6833fc5c7f19",
-                "reference": "6fce887c71076a73f32fd3e0774a6833fc5c7f19",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/ab9a20b623b235165d24faa9d1da925cb54939c0",
+                "reference": "ab9a20b623b235165d24faa9d1da925cb54939c0",
                 "shasum": ""
             },
             "require": {
@@ -7132,7 +7132,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.3"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.6"
             },
             "funding": [
                 {
@@ -7148,7 +7148,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-12-13T07:25:23+00:00"
+            "time": "2024-01-13T12:49:56+00:00"
         },
         {
             "name": "psr/cache",

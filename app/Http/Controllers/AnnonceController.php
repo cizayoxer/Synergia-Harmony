@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class AnnonceController extends Controller
 {
-    public function getAnnonces(Request $request)
+    public function getAnnonces()
     {
         $annonces = Annonce::all();
 
