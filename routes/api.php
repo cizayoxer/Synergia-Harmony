@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\AnnonceController;
 use App\Http\Controllers\CourController;
 use App\Http\Controllers\LoisirController;
@@ -68,4 +69,4 @@ Route::post('/annonce/add', [AnnonceController::class, 'addAnnonce']);
 Route::get('/annonces/last', [AnnonceController::class, "getLastAnnonces"]);
 
 #----------# Accueil #---------------#
-Route::get('/accueil', [AnnonceController::class, "getAccueil"]);
+Route::get('/accueil', [AccueilController::class, "getAccueil"]);

@@ -22,6 +22,6 @@ class AccueilController extends Controller
             "events" => $events,
             //"sondages" => $sondages,
             "cours" => $cours
-        ]);
+        ], 200, [], JSON_UNESCAPED_UNICODE);        
     } 
 }
