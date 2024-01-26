@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Collection|AUTORISER[] $a_u_t_o_r_i_s_e_r_s
  * @property ETUDIANT $e_t_u_d_i_a_n_t
  * @property MODERATEUR $m_o_d_e_r_a_t_e_u_r
+ * @property Collection|POSTERSONDAGE[] $p_o_s_t_e_r_s_o_n_d_a_g_e_s
  * @property Collection|PROFESSEUR[] $p_r_o_f_e_s_s_e_u_r_s
  *
  * @package App\Models
@@ -63,6 +64,11 @@ class UTILISATEUR extends Model
 	public function m_o_d_e_r_a_t_e_u_r()
 	{
 		return $this->hasOne(MODERATEUR::class, 'IDUTILISATEUR');
+	}
+
+	public function p_o_s_t_e_r_s_o_n_d_a_g_e_s()
+	{
+		return $this->hasMany(POSTERSONDAGE::class, 'IDUTILISATEUR');
 	}
 
 	public function p_r_o_f_e_s_s_e_u_r_s()
