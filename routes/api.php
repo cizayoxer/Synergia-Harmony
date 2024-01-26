@@ -6,6 +6,7 @@ use App\Http\Controllers\CourController;
 use App\Http\Controllers\LoisirController;
 use App\Http\Controllers\ProfesseurController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\SondageController;
 use App\Http\Controllers\SportController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -70,3 +71,7 @@ Route::get('/annonces/last', [AnnonceController::class, "getLastAnnonces"]);
 
 #----------# Accueil #---------------#
 Route::get('/accueil', [AccueilController::class, "getAccueil"]);
+
+#----------# Sondage #---------------#
+Route::get('/sondages', [SondageController::class, "getSondages"]);
+Route::get('/sondage/{sondageByid}', [SondageController::class,"getSondageById"]);
