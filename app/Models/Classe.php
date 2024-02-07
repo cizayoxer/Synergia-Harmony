@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $LIBELLESPECIALITE
  * 
  * @property Collection|COUR[] $c_o_u_r_s
- * @property Collection|REL2[] $r_e_l2_s
+ * @property Collection|ETREINCLU[] $e_t_r_e_i_n_c_l_u_s
  *
  * @package App\Models
  */
@@ -35,8 +35,8 @@ class CLASSE extends Model
 		return $this->hasMany(COUR::class, 'IDSPECIALITE');
 	}
 
-	public function r_e_l2_s()
+	public function e_t_r_e_i_n_c_l_u_s()
 	{
-		return $this->hasMany(REL2::class, 'IDSPECIALITE');
+		return $this->hasMany(ETREINCLU::class, 'IDSPECIALITE');
 	}
 }

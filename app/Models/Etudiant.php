@@ -24,8 +24,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property NIVEAU $n_i_v_e_a_u
  * @property UTILISATEUR $u_t_i_l_i_s_a_t_e_u_r
  * @property Collection|ANNONCE[] $a_n_n_o_n_c_e_s
+ * @property Collection|ETREINCLU[] $e_t_r_e_i_n_c_l_u_s
  * @property Collection|POSSÉDERBADGE[] $p_o_s_sé_d_e_r_b_a_d_g_e_s
- * @property Collection|REL2[] $r_e_l2_s
  *
  * @package App\Models
  */
@@ -71,13 +71,13 @@ class ETUDIANT extends Model
 		return $this->hasMany(ANNONCE::class, 'IDUTILISATEUR_1');
 	}
 
+	public function e_t_r_e_i_n_c_l_u_s()
+	{
+		return $this->hasMany(ETREINCLU::class, 'IDUTILISATEUR');
+	}
+
 	public function p_o_s_sé_d_e_r_b_a_d_g_e_s()
 	{
 		return $this->hasMany(POSSÉDERBADGE::class, 'IDUTILISATEUR');
-	}
-
-	public function r_e_l2_s()
-	{
-		return $this->hasMany(REL2::class, 'IDUTILISATEUR');
 	}
 }

@@ -14,8 +14,11 @@ class AccueilController extends Controller
         $evenementsSportifController = new EvenementSportifController();
         $sondagesController = new SondageController();
         $annonces = $annoncesController->getAnnonces();
+
         $events = $evenementsSportifController->getEvenements();
+
         $sondages = $sondagesController->getSondages();
+
 
         $courController = new CourController();
         $cours = $courController->getCours();

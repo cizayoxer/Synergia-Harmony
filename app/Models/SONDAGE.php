@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,6 +15,8 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $IDSONDAGE
  * @property string $NOMSONDAGE
+ * @property Carbon $DATEDEBUT
+ * @property Carbon $DATEFIN
  * @property int $POUR
  * @property int $CONTRE
  * 
@@ -28,12 +31,16 @@ class SONDAGE extends Model
 	public $timestamps = false;
 
 	protected $casts = [
+		'DATEDEBUT' => 'datetime',
+		'DATEFIN' => 'datetime',
 		'POUR' => 'int',
 		'CONTRE' => 'int'
 	];
 
 	protected $fillable = [
 		'NOMSONDAGE',
+		'DATEDEBUT',
+		'DATEFIN',
 		'POUR',
 		'CONTRE'
 	];
