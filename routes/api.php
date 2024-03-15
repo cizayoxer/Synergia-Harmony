@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\AnnonceController;
 use App\Http\Controllers\CourController;
+use App\Http\Controllers\EvenementSportifController;
 use App\Http\Controllers\LoisirController;
 use App\Http\Controllers\ProfesseurController;
 use App\Http\Controllers\ServiceController;
@@ -75,3 +76,7 @@ Route::get('/accueil', [AccueilController::class, "getAccueil"]);
 #----------# Sondage #---------------#
 Route::get('/sondages', [SondageController::class, "getSondages"]);
 Route::get('/sondage/{sondageByid}', [SondageController::class,"getSondageById"]);
+
+#----------# Events#---------------#
+Route::get("/events/cinema",[EvenementSportifController::class,'getEvenementsCinema']);
+Route::get("/events/sport",[EvenementSportifController::class,'getEvenementsSport']);
