@@ -5,21 +5,38 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Http\Controllers\AnnonceController;
+use App\Http\Controllers\EvenementSportifController;
+use App\Http\Controllers\SondageController;
+use App\Http\Controllers\CourController;
+use OpenApi\Annotations as OA;
 
 class AccueilController extends Controller
 {
-    // récupère les annonces, les events, les sondages et les cours
+    /**
+     * @OA\Get(
+     *     path="/accueil",
+     *     tags={"Accueil"},
+     *     summary="Récupère les annonces, les événements, les sondages et les cours.",
+     *     description="Récupère les annonces, les événements, les sondages et les cours pour afficher sur la page d'accueil.",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Liste des annonces, événements, sondages et cours récupérés avec succès.",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="annonces", type="array", @OA\Items(ref="#/components/schemas/Annonce")),
+     *             @OA\Property(property="events", type="array", @OA\Items(ref="#/components/schemas/Evenement")),
+     *             @OA\Property(property="sondages", type="array", @OA\Items(ref="#/components/schemas/Sondage")),
+     *             @OA\Property(property="cours", type="array", @OA\Items(ref="#/components/schemas/Cour")),
+     *         ),
+     *     ),
+     * )
+     */
     public function getAccueil(){
         $annoncesController = new AnnonceController();
         $evenementsSportifController = new EvenementSportifController();
         $sondagesController = new SondageController();
         $annonces = $annoncesController->getAnnonces();
-
         $events = $evenementsSportifController->getEvenements();
-
         $sondages = $sondagesController->getSondages();
-
-
         $courController = new CourController();
         $cours = $courController->getCours();
         return response()->json([
