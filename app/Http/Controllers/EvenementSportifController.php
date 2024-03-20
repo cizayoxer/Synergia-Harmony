@@ -58,7 +58,7 @@ class EvenementSportifController extends Controller
      */
     public function getEvenementsCinema()
     {
-        $evenementsCinema = CINEMA::all();
+        $evenementsCinema = Cinema::all();
         return response()->json($evenementsCinema, 200, [], JSON_UNESCAPED_UNICODE);
     }
 }
