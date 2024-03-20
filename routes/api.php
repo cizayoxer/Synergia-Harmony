@@ -80,5 +80,3 @@ Route::get('/sondage/{sondageByid}', [SondageController::class,"getSondageById"]
 #----------# Events#---------------#
 Route::get("/events/cinema",[EvenementSportifController::class,'getEvenementsCinema']);
 Route::get("/events/sport",[EvenementSportifController::class,'getEvenementsSport']);
-
-
