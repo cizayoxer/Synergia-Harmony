@@ -24,7 +24,6 @@ class AnnonceController extends Controller
      *         description="Liste des annonces récupérées avec succès.",
      *         @OA\JsonContent(
      *             type="array",
-     *             @OA\Items(ref="#/components/schemas/Annonce")
      *         )
      *     )
      * )

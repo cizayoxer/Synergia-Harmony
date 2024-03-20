@@ -28,6 +28,7 @@ class AccueilController extends Controller
      *             @OA\Property(property="cours", type="array", @OA\Items(ref="#/components/schemas/Cour")),
      *         ),
      *     ),
+     *     @OA\Info(ref="#/components/info")
      * )
      */
     public function getAccueil(){
