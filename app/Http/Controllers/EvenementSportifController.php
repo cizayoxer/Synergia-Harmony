@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CINEMA;
+use App\Models\Cinema;
 use App\Models\EvenementSportif;
 use Illuminate\Http\Request;
 use OpenApi\Annotations as OA;

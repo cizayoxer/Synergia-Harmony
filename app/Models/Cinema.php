@@ -11,17 +11,17 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class CINEMA
- * 
+ *
  * @property int $IDSERVICE
  * @property string $LIEUFILM
  * @property string $NOMFILM
  * @property Carbon $DATEHEUREFILM
- * 
+ *
  * @property SERVICE $s_e_r_v_i_c_e
  *
  * @package App\Models
  */
-class CINEMA extends Model
+class Cinema extends Model
 {
 	protected $table = 'CINEMA';
 	protected $primaryKey = 'IDSERVICE';
