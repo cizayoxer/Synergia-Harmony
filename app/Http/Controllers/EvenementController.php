@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use OpenApi\Annotations as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class EvenementSportifController extends Controller
+class EvenementController extends Controller
 {
     /**
      * Récupère tous les événements sportifs.
@@ -33,6 +33,15 @@ class EvenementSportifController extends Controller
     public function getEvenementsSport()
     {
         $evenementsSport = EvenementSportif::all();
+
+        // Parcourir chaque événement sportif
+        foreach ($evenementsSport as $evenement) {
+            // Récupérer le nom du sport associé à partir de la relation
+            $nomSport = $evenement->s_p_o_r_t->LIBELLESPORT;
+            // Ajouter le nom du sport à l'objet événement sportif
+            $evenement->nom_sport = $nomSport;
+        }
+
         return response()->json($evenementsSport, 200, [], JSON_UNESCAPED_UNICODE);
     }
 

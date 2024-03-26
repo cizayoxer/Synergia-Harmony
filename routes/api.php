@@ -3,8 +3,10 @@
 use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\AnnonceController;
 use App\Http\Controllers\CourController;
-use App\Http\Controllers\EvenementSportifController;
+use App\Http\Controllers\EchangCompetController;
+use App\Http\Controllers\EvenementController;
 use App\Http\Controllers\LoisirController;
+use App\Http\Controllers\CovoiturageController;
 use App\Http\Controllers\ProfesseurController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SondageController;
@@ -68,7 +70,8 @@ Route::get('/annonces', [AnnonceController::class, "getAnnonces"]);
 Route::get('/annonce/{annonceByid}', [AnnonceController::class,"getAnnonceById"]);
 Route::delete('/annonce/delete/{annonceId}', [AnnonceController::class, 'deleteAnnonce']);
 Route::post('/annonce/add', [AnnonceController::class, 'addAnnonce']);
-Route::get('/annonces/last', [AnnonceController::class, "getLastAnnonces"]);
+Route::get('/annonces/last/{limit}', [AnnonceController::class, "getLastAnnonces"]);
+
 
 #----------# Accueil #---------------#
 Route::get('/accueil', [AccueilController::class, "getAccueil"]);
@@ -78,5 +81,13 @@ Route::get('/sondages', [SondageController::class, "getSondages"]);
 Route::get('/sondage/{sondageByid}', [SondageController::class,"getSondageById"]);
 
 #----------# Events#---------------#
-Route::get("/events/cinema",[EvenementSportifController::class,'getEvenementsCinema']);
-Route::get("/events/sport",[EvenementSportifController::class,'getEvenementsSport']);
+Route::get("/events/cinema",[EvenementController::class,'getEvenementsCinema']);
+Route::get("/events/sport",[EvenementController::class,'getEvenementsSport']);
+
+#----------# Convoiturage#---------------#
+Route::get("/covoiturages",[CovoiturageController::class,'getConvoits']);
+Route::get("/covoiturage/{covoiturageId}",[CovoiturageController::class,'getConvoitById']);
+
+#----------# Convoiturage#---------------#
+Route::get("/echangeCompetences",[EchangCompetController::class,'getAllEchanges']);
+Route::get("/echangeCompetence/{echangeCompId}",[EchangCompetController::class,'getEchangeById']);

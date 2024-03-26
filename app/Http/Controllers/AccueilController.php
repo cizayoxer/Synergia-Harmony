@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Http\Controllers\AnnonceController;
-use App\Http\Controllers\EvenementSportifController;
+use App\Http\Controllers\EvenementController;
 use App\Http\Controllers\SondageController;
 use App\Http\Controllers\CourController;
 use OpenApi\Annotations as OA;
@@ -33,7 +33,7 @@ class AccueilController extends Controller
      */
     public function getAccueil(){
         $annoncesController = new AnnonceController();
-        $evenementsSportifController = new EvenementSportifController();
+        $evenementsSportifController = new EvenementController();
         $sondagesController = new SondageController();
         $annonces = $annoncesController->getAnnonces();
         $events = $evenementsSportifController->getEvenements();

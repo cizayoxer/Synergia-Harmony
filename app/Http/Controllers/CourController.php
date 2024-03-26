@@ -18,6 +18,12 @@ class CourController extends Controller
 //            ->get();
         $cours = Cour::all();
 
+        foreach ($cours as $cour) {
+            // Récupérer le nom du sport associé à partir de la relation
+            $nomMatiere = $cour->c_l_a_s_s_e->LIBELLEMATIERE;
+            // Ajouter le nom du sport à l'objet événement sportif
+            $cour->nom_matiere = $nomMatiere;
+        }
 
 
         return response()->json($cours, 200, [], JSON_UNESCAPED_UNICODE);

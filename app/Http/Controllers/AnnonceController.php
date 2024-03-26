@@ -199,12 +199,12 @@ class AnnonceController extends Controller
      *     )
      * )
      */
-    public function getLastAnnonces(Request $request, int $NombreAnnonce = 10)
+    public function getLastAnnonces(Request $request, int $limit = 10)
     {
         try {
 
             $annonces = Annonce::orderBy('DATEPUBLICATIONANNONCE', 'desc')
-                ->take($NombreAnnonce)
+                ->take($limit)
                 ->get();
 
             return response()->json($annonces, 200, [], JSON_UNESCAPED_UNICODE);
