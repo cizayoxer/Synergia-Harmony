@@ -11,11 +11,11 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class EVENEMENTSPORTIF
- * 
+ *
  * @property int $IDSERVICE
  * @property int $IDSPORT
  * @property Carbon $DATEEVENT
- * 
+ *
  * @property SERVICE $s_e_r_v_i_c_e
  * @property SPORT $s_p_o_r_t
  *
@@ -46,6 +46,6 @@ class EVENEMENTSPORTIF extends Model
 
 	public function s_p_o_r_t()
 	{
-		return $this->belongsTo(SPORT::class, 'IDSPORT');
+		return $this->belongsTo(Sport::class, 'IDSPORT');
 	}
 }
