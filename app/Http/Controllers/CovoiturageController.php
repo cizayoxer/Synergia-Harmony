@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\COVOITURAGE;
+use App\Models\Covoiturage;
 use Illuminate\Http\Request;
 use OpenApi\Annotations as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
