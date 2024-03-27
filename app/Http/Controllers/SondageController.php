@@ -16,6 +16,7 @@ class SondageController extends Controller
 
         // Parcourir chaque sondage pour ajouter les informations de vote
         foreach ($sondages as $sondage) {
+
             $votesPour = $sondage->votes()->where('AVIS', 'POUR')->count();
             $votesContre = $sondage->votes()->where('AVIS', 'CONTRE')->count();
             $sondage->votes_pour = $votesPour;

@@ -19,6 +19,7 @@ class EvenementController extends Controller
         foreach ($evenementsSport as $evenement) {
             // Récupérer le nom du sport associé à partir de la relation
             $nomSport = $evenement->s_p_o_r_t->LIBELLESPORT;
+            $nomService = $evenement->s_e_r_v_i_c_e->LIBELLESERVICE;
         }
 
         return response()->json($evenementsSport, 200, [], JSON_UNESCAPED_UNICODE);
@@ -27,6 +28,10 @@ class EvenementController extends Controller
     public function getEvenementsCinema()
     {
         $evenementsCinema = Cinema::all();
+        foreach ($evenementsCinema as $cinema) {
+
+            $nomService = $cinema->s_e_r_v_i_c_e->LIBELLESERVICE;
+        }
         return response()->json($evenementsCinema, 200, [], JSON_UNESCAPED_UNICODE);
     }
 }
