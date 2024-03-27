@@ -32,7 +32,7 @@ class SondageController extends Controller
     public function getSondages()
     {
         // Récupérer tous les sondages
-        $sondages = Sondage::all();
+        $sondages = SONDAGE::all();
 
         // Parcourir chaque sondage pour ajouter les informations de vote
         foreach ($sondages as $sondage) {
@@ -78,7 +78,7 @@ class SondageController extends Controller
      */
     public function getSondageById(Request $request, $sondageId)
     {
-        $sondage = Sondage::find($sondageId);
+        $sondage = SONDAGE::find($sondageId);
 
         $votesPour = $sondage->votes()->where('AVIS', 'POUR')->count();
         $votesContre = $sondage->votes()->where('AVIS', 'CONTRE')->count();

@@ -12,12 +12,12 @@ class CovoiturageController extends Controller
 
     public function getConvoits(Request $request)
     {
-        $convoits = COVOITURAGE::all();
+        $convoits = Covoiturage::all();
         return response()->json($convoits, 200, [], JSON_UNESCAPED_UNICODE);
     }
 
     public function getConvoitById(Request $request, $convoit)
     {
-        return response()->json(COVOITURAGE::find($convoit));
+        return response()->json(Covoiturage::find($convoit));
     }
 }
