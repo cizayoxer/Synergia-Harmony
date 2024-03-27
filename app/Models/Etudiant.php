@@ -12,14 +12,14 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class ETUDIANT
- * 
+ *
  * @property int $IDUTILISATEUR
  * @property int $IDNIVEAU
  * @property int|null $IDUTILISATEUR_1
  * @property Carbon|null $DATEVALIDATION
  * @property string $EMAIL
  * @property string $MOTDEPASSE
- * 
+ *
  * @property MODERATEUR|null $m_o_d_e_r_a_t_e_u_r
  * @property NIVEAU $n_i_v_e_a_u
  * @property UTILISATEUR $u_t_i_l_i_s_a_t_e_u_r
@@ -53,22 +53,22 @@ class ETUDIANT extends Model
 
 	public function m_o_d_e_r_a_t_e_u_r()
 	{
-		return $this->belongsTo(MODERATEUR::class, 'IDUTILISATEUR_1');
+		return $this->belongsTo(Moderateur::class, 'IDUTILISATEUR_1');
 	}
 
 	public function n_i_v_e_a_u()
 	{
-		return $this->belongsTo(NIVEAU::class, 'IDNIVEAU');
+		return $this->belongsTo(Niveau::class, 'IDNIVEAU');
 	}
 
 	public function u_t_i_l_i_s_a_t_e_u_r()
 	{
-		return $this->belongsTo(UTILISATEUR::class, 'IDUTILISATEUR');
+		return $this->belongsTo(Utilisateur::class, 'IDUTILISATEUR');
 	}
 
 	public function a_n_n_o_n_c_e_s()
 	{
-		return $this->hasMany(ANNONCE::class, 'IDUTILISATEUR_1');
+		return $this->hasMany(Annonce::class, 'IDUTILISATEUR_1');
 	}
 
 	public function e_t_r_e_i_n_c_l_u_s()

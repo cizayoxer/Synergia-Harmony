@@ -10,13 +10,13 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class PROFESSEUR
- * 
+ *
  * @property int $IDPROF
  * @property int $IDMATIERE
  * @property int $IDUTILISATEUR
  * @property string $NOMPROF
  * @property string $PRENOMPROF
- * 
+ *
  * @property COUR $c_o_u_r
  * @property UTILISATEUR $u_t_i_l_i_s_a_t_e_u_r
  *
@@ -42,11 +42,11 @@ class PROFESSEUR extends Model
 
 	public function c_o_u_r()
 	{
-		return $this->belongsTo(COUR::class, 'IDMATIERE');
+		return $this->belongsTo(Cour::class, 'IDMATIERE');
 	}
 
 	public function u_t_i_l_i_s_a_t_e_u_r()
 	{
-		return $this->belongsTo(UTILISATEUR::class, 'IDUTILISATEUR');
+		return $this->belongsTo(Utilisateur::class, 'IDUTILISATEUR');
 	}
 }

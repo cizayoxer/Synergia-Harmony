@@ -11,10 +11,10 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class SPORT
- * 
+ *
  * @property int $IDSPORT
  * @property string $LIBELLESPORT
- * 
+ *
  * @property Collection|EVENEMENTSPORTIF[] $e_v_e_n_e_m_e_n_t_s_p_o_r_t_i_f_s
  *
  * @package App\Models
@@ -31,6 +31,6 @@ class SPORT extends Model
 
 	public function e_v_e_n_e_m_e_n_t_s_p_o_r_t_i_f_s()
 	{
-		return $this->hasMany(EVENEMENTSPORTIF::class, 'IDSPORT');
+		return $this->hasMany(EvenementSportif::class, 'IDSPORT');
 	}
 }

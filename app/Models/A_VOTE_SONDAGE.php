@@ -24,6 +24,6 @@ class A_VOTE_SONDAGE extends Model
     // Relation avec l'utilisateur
     public function utilisateur()
     {
-        return $this->belongsTo(UTILISATEUR::class, 'IDUTILISATEUR');
+        return $this->belongsTo(Utilisateur::class, 'IDUTILISATEUR');
     }
 }

@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class ANNONCE
- * 
+ *
  * @property int $IDANNONCE
  * @property int $IDSERVICE
  * @property int $IDUTILISATEUR
@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $DATEPUBLICATIONANNONCE
  * @property Carbon $DATETRANSACTION
  * @property Carbon $DATEPREVUE
- * 
+ *
  * @property ETUDIANT $e_t_u_d_i_a_n_t
  * @property MODERATEUR $m_o_d_e_r_a_t_e_u_r
  * @property SERVICE $s_e_r_v_i_c_e
@@ -61,16 +61,16 @@ class ANNONCE extends Model
 
 	public function e_t_u_d_i_a_n_t()
 	{
-		return $this->belongsTo(ETUDIANT::class, 'IDUTILISATEUR_1');
+		return $this->belongsTo(Etudiant::class, 'IDUTILISATEUR_1');
 	}
 
 	public function m_o_d_e_r_a_t_e_u_r()
 	{
-		return $this->belongsTo(MODERATEUR::class, 'IDUTILISATEUR_2');
+		return $this->belongsTo(Moderateur::class, 'IDUTILISATEUR_2');
 	}
 
 	public function s_e_r_v_i_c_e()
 	{
-		return $this->belongsTo(SERVICE::class, 'IDSERVICE');
+		return $this->belongsTo(Service::class, 'IDSERVICE');
 	}
 }

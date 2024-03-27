@@ -41,6 +41,6 @@ class Cinema extends Model
 
 	public function s_e_r_v_i_c_e()
 	{
-		return $this->belongsTo(SERVICE::class, 'IDSERVICE');
+		return $this->belongsTo(Service::class, 'IDSERVICE');
 	}
 }
