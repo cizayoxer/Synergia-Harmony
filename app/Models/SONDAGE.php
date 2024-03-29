@@ -12,12 +12,12 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class SONDAGE
- * 
+ *
  * @property int $IDSONDAGE
  * @property string $NOMSONDAGE
  * @property Carbon $DATEDEBUT
  * @property Carbon $DATEFIN
- * 
+ *
  * @property Collection|AVOTESONDAGE[] $a_v_o_t_e_s_o_n_d_a_g_e_s
  * @property Collection|POSTERSONDAGE[] $p_o_s_t_e_r_s_o_n_d_a_g_e_s
  *
@@ -49,4 +49,9 @@ class SONDAGE extends Model
 	{
 		return $this->hasMany(POSTERSONDAGE::class, 'IDSONDAGE');
 	}
+
+    public function votes()
+    {
+        return $this->hasMany(A_VOTE_SONDAGE::class, 'IDSONDAGE');
+    }
 }

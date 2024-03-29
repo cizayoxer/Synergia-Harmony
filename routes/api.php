@@ -85,6 +85,7 @@ Route::get('/accueil', [AccueilController::class, "getAccueil"]);
 Route::get('/sondages', [SondageController::class, "getSondages"]);
 Route::get('/sondage/{sondageByid}', [SondageController::class,"getSondageById"]);
 
+
 #----------# Events#---------------#
 Route::get("/events/cinema",[EvenementController::class,'getEvenementsCinema']);
 Route::get("/events/sport",[EvenementController::class,'getEvenementsSport']);
