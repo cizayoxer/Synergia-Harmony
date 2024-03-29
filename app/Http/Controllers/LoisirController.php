@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LOISIR;
+use App\Models\Loisir;
 use App\Models\TypeLoisir;
 use Illuminate\Http\Request;
 use OpenApi\Annotations as OA;
