@@ -11,10 +11,10 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class TYPELOISIR
- * 
+ *
  * @property int $IDLOISIR
  * @property string $LIBELLELOISIR
- * 
+ *
  * @property Collection|LOISIR[] $l_o_i_s_i_r_s
  *
  * @package App\Models
@@ -31,6 +31,6 @@ class TYPELOISIR extends Model
 
 	public function l_o_i_s_i_r_s()
 	{
-		return $this->hasMany(LOISIR::class, 'IDLOISIR');
+		return $this->hasMany(Loisir::class, 'IDLOISIR');
 	}
 }

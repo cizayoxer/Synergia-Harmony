@@ -11,10 +11,10 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class MODERATEUR
- * 
+ *
  * @property int $IDUTILISATEUR
  * @property int $RÉPUTATION
- * 
+ *
  * @property UTILISATEUR $u_t_i_l_i_s_a_t_e_u_r
  * @property Collection|ETUDIANT[] $e_t_u_d_i_a_n_t_s
  *
@@ -38,11 +38,11 @@ class MODERATEUR extends Model
 
 	public function u_t_i_l_i_s_a_t_e_u_r()
 	{
-		return $this->belongsTo(UTILISATEUR::class, 'IDUTILISATEUR');
+		return $this->belongsTo(Utilisateur::class, 'IDUTILISATEUR');
 	}
 
 	public function e_t_u_d_i_a_n_t_s()
 	{
-		return $this->hasMany(ETUDIANT::class, 'IDUTILISATEUR_1');
+		return $this->hasMany(Etudiant::class, 'IDUTILISATEUR_1');
 	}
 }

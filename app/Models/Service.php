@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class SERVICE
- * 
+ *
  * @property int $IDSERVICE
  * @property int $IDSTATUT
  * @property string $LIBELLESERVICE
@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $DATEPUBLICATION
  * @property Carbon|null $DATEPREVUE
  * @property int $NBPERSONNESMAX
- * 
+ *
  * @property ETUDIANT|null $e_t_u_d_i_a_n_t
  * @property STATUTSERVICE $s_t_a_t_u_t_s_e_r_v_i_c_e
  * @property TypeService $type_service
@@ -69,12 +69,12 @@ class SERVICE extends Model
 
 	public function e_t_u_d_i_a_n_t()
 	{
-		return $this->belongsTo(ETUDIANT::class, 'IDVENDEUR');
+		return $this->belongsTo(Etudiant::class, 'IDVENDEUR');
 	}
 
 	public function s_t_a_t_u_t_s_e_r_v_i_c_e()
 	{
-		return $this->belongsTo(STATUTSERVICE::class, 'IDSTATUT');
+		return $this->belongsTo(StatutService::class, 'IDSTATUT');
 	}
 
 	public function type_service()
@@ -84,27 +84,27 @@ class SERVICE extends Model
 
 	public function c_i_n_e_m_a()
 	{
-		return $this->hasOne(CINEMA::class, 'IDSERVICE');
+		return $this->hasOne(Cinema::class, 'IDSERVICE');
 	}
 
 	public function c_o_v_o_i_t_u_r_a_g_e()
 	{
-		return $this->hasOne(COVOITURAGE::class, 'IDSERVICE');
+		return $this->hasOne(Covoiturage::class, 'IDSERVICE');
 	}
 
 	public function e_c_h_a_n_g_e_c_o_m_p_e_t_e_n_c_e()
 	{
-		return $this->hasOne(ECHANGECOMPETENCE::class, 'IDSERVICE');
+		return $this->hasOne(EchangeCompetence::class, 'IDSERVICE');
 	}
 
 	public function e_v_e_n_e_m_e_n_t_s_p_o_r_t_i_f()
 	{
-		return $this->hasOne(EVENEMENTSPORTIF::class, 'IDSERVICE');
+		return $this->hasOne(EvenementSportif::class, 'IDSERVICE');
 	}
 
 	public function l_o_i_s_i_r()
 	{
-		return $this->hasOne(LOISIR::class, 'IDSERVICE');
+		return $this->hasOne(Loisir::class, 'IDSERVICE');
 	}
 
 	public function reservations()

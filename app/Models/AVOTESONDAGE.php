@@ -10,12 +10,12 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class AVOTESONDAGE
- * 
+ *
  * @property int $NUMEROVOTE
  * @property int $IDSONDAGE
  * @property int $IDUTILISATEUR
  * @property string $AVIS
- * 
+ *
  * @property SONDAGE $s_o_n_d_a_g_e
  * @property UTILISATEUR $u_t_i_l_i_s_a_t_e_u_r
  *
@@ -45,6 +45,6 @@ class AVOTESONDAGE extends Model
 
 	public function u_t_i_l_i_s_a_t_e_u_r()
 	{
-		return $this->belongsTo(UTILISATEUR::class, 'IDUTILISATEUR');
+		return $this->belongsTo(Utilisateur::class, 'IDUTILISATEUR');
 	}
 }

@@ -11,12 +11,12 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Reservation
- * 
+ *
  * @property int $IDRESERVATION
  * @property int $IDACHETEUR
  * @property Carbon $DATETRANSACTION
  * @property int $IDSERVICE
- * 
+ *
  * @property ETUDIANT $e_t_u_d_i_a_n_t
  * @property SERVICE $s_e_r_v_i_c_e
  *
@@ -42,11 +42,11 @@ class Reservation extends Model
 
 	public function e_t_u_d_i_a_n_t()
 	{
-		return $this->belongsTo(ETUDIANT::class, 'IDACHETEUR');
+		return $this->belongsTo(Etudiant::class, 'IDACHETEUR');
 	}
 
 	public function s_e_r_v_i_c_e()
 	{
-		return $this->belongsTo(SERVICE::class, 'IDSERVICE');
+		return $this->belongsTo(Service::class, 'IDSERVICE');
 	}
 }

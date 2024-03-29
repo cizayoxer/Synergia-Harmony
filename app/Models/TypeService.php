@@ -11,10 +11,10 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class TypeService
- * 
+ *
  * @property int $id_Type_Service
  * @property string $libelle_Type_Service
- * 
+ *
  * @property Collection|SERVICE[] $s_e_r_v_i_c_e_s
  *
  * @package App\Models
@@ -31,6 +31,6 @@ class TypeService extends Model
 
 	public function s_e_r_v_i_c_e_s()
 	{
-		return $this->hasMany(SERVICE::class, 'typeService');
+		return $this->hasMany(Service::class, 'typeService');
 	}
 }
