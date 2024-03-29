@@ -10,10 +10,10 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class LOISIR
- *
+ * 
  * @property int $IDSERVICE
  * @property int $IDLOISIR
- *
+ * 
  * @property SERVICE $s_e_r_v_i_c_e
  * @property TYPELOISIR $t_y_p_e_l_o_i_s_i_r
  *
@@ -37,11 +37,11 @@ class LOISIR extends Model
 
 	public function s_e_r_v_i_c_e()
 	{
-		return $this->belongsTo(Service::class, 'IDSERVICE');
+		return $this->belongsTo(SERVICE::class, 'IDSERVICE');
 	}
 
 	public function t_y_p_e_l_o_i_s_i_r()
 	{
-		return $this->belongsTo(TypeLoisir::class, 'IDLOISIR');
+		return $this->belongsTo(TYPELOISIR::class, 'IDLOISIR');
 	}
 }

@@ -11,12 +11,12 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class COVOITURAGE
- *
+ * 
  * @property int $IDSERVICE
  * @property string $LIEUDEPART
  * @property string $LIEUARRIVE
  * @property Carbon $DATECOVOIT
- *
+ * 
  * @property SERVICE $s_e_r_v_i_c_e
  *
  * @package App\Models
@@ -41,6 +41,6 @@ class COVOITURAGE extends Model
 
 	public function s_e_r_v_i_c_e()
 	{
-		return $this->belongsTo(Service::class, 'IDSERVICE');
+		return $this->belongsTo(SERVICE::class, 'IDSERVICE');
 	}
 }

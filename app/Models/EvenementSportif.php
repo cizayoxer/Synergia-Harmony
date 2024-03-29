@@ -11,11 +11,12 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class EVENEMENTSPORTIF
- *
+ * 
  * @property int $IDSERVICE
  * @property int $IDSPORT
+ * @property string $LIEUEVENT
  * @property Carbon $DATEEVENT
- *
+ * 
  * @property SERVICE $s_e_r_v_i_c_e
  * @property SPORT $s_p_o_r_t
  *
@@ -36,16 +37,17 @@ class EVENEMENTSPORTIF extends Model
 
 	protected $fillable = [
 		'IDSPORT',
+		'LIEUEVENT',
 		'DATEEVENT'
 	];
 
 	public function s_e_r_v_i_c_e()
 	{
-		return $this->belongsTo(Service::class, 'IDSERVICE');
+		return $this->belongsTo(SERVICE::class, 'IDSERVICE');
 	}
 
 	public function s_p_o_r_t()
 	{
-		return $this->belongsTo(Sport::class, 'IDSPORT');
+		return $this->belongsTo(SPORT::class, 'IDSPORT');
 	}
 }

@@ -11,17 +11,17 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class CINEMA
- *
+ * 
  * @property int $IDSERVICE
  * @property string $LIEUFILM
  * @property string $NOMFILM
  * @property Carbon $DATEHEUREFILM
- *
+ * 
  * @property SERVICE $s_e_r_v_i_c_e
  *
  * @package App\Models
  */
-class Cinema extends Model
+class CINEMA extends Model
 {
 	protected $table = 'CINEMA';
 	protected $primaryKey = 'IDSERVICE';
@@ -41,6 +41,6 @@ class Cinema extends Model
 
 	public function s_e_r_v_i_c_e()
 	{
-		return $this->belongsTo(Service::class, 'IDSERVICE');
+		return $this->belongsTo(SERVICE::class, 'IDSERVICE');
 	}
 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservation;
 use App\Models\Service;
+use App\Models\UTILISATEUR;
 use Illuminate\Http\Request;
 use OpenApi\Annotations as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -20,4 +22,14 @@ class ServiceController extends Controller
     {
         return response()->json(Service::find($service));
     }
+
+    public function reserverService(Request $request,$idUser,$idService)
+    {
+        $reservation= new Reservation();
+        $reservation->IDACHETEUR=$idUser;
+        $reservation->IDSERVICE=$idService;
+        $reservation->save();
+        return response()->json($reservation);
+    }
+
 }

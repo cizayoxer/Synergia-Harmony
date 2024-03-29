@@ -9,6 +9,23 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class UserController extends Controller
 {
+    public function valideUser(Request $request)
+    {
+
+        $user = Utilisateur::where('EMAILUTILISATEUR', $request->email)->first();
+
+        if (!$user) {
+            return response()->json(false);
+        }
+
+        $isValidPassword = password_verify($request->password, $user->MOTDEPASSE);
+
+        // Renvoyer true si le mot de passe est valide, sinon renvoyer false
+        return response()->json($isValidPassword);
+    }
+
+
+
 
     public function getUsers(Request $request)
     {

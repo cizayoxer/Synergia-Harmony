@@ -39,6 +39,8 @@ Route::delete('/user/delete/{userId}', [UserController::class, 'deleteUser']);
 Route::put('/user/crediter/{userId}', [UserController::class, "addMonnaie"]);
 Route::put('/user/verser/{userId}', [UserController::class, "removeMonnaie"]);
 
+Route::post("/user/validation", [UserController::class,"valideUser"]);
+
 
 #----------# Sports #---------------#
 Route::get('/sports', [SportController::class, "getSports"]);
@@ -60,6 +62,8 @@ Route::get('/professeur/{profByid}', [ProfesseurController::class, "getProfById"
 Route::get('/services', [ServiceController::class, "getServices"]);
 Route::get('/service/{serviceByid}', [ServiceController::class,"getServiceById"]);
 
+#----------# Reserve #---------------#
+Route::post('/reserver/{idUser}/{idService}', [ServiceController::class, "reserverService"]);
 
 #----------# Cours #---------------#
 Route::get('/cours', [CourController::class, "getCours"]);

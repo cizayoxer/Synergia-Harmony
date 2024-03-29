@@ -10,27 +10,27 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class STATUTSERVICE
+ * Class TypeService
  * 
- * @property int $IDSTATUT
- * @property string $LIBELLESTATUT
+ * @property int $id_Type_Service
+ * @property string $libelle_Type_Service
  * 
  * @property Collection|SERVICE[] $s_e_r_v_i_c_e_s
  *
  * @package App\Models
  */
-class STATUTSERVICE extends Model
+class TypeService extends Model
 {
-	protected $table = 'STATUT_SERVICE';
-	protected $primaryKey = 'IDSTATUT';
+	protected $table = 'type_service';
+	protected $primaryKey = 'id_Type_Service';
 	public $timestamps = false;
 
 	protected $fillable = [
-		'LIBELLESTATUT'
+		'libelle_Type_Service'
 	];
 
 	public function s_e_r_v_i_c_e_s()
 	{
-		return $this->hasMany(SERVICE::class, 'IDSTATUT');
+		return $this->hasMany(SERVICE::class, 'typeService');
 	}
 }

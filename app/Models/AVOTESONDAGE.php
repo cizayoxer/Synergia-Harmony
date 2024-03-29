@@ -9,40 +9,38 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class PROFESSEUR
+ * Class AVOTESONDAGE
  * 
- * @property int $IDPROF
- * @property int $IDMATIERE
+ * @property int $NUMEROVOTE
+ * @property int $IDSONDAGE
  * @property int $IDUTILISATEUR
- * @property string $NOMPROF
- * @property string $PRENOMPROF
+ * @property string $AVIS
  * 
- * @property COUR $c_o_u_r
+ * @property SONDAGE $s_o_n_d_a_g_e
  * @property UTILISATEUR $u_t_i_l_i_s_a_t_e_u_r
  *
  * @package App\Models
  */
-class PROFESSEUR extends Model
+class AVOTESONDAGE extends Model
 {
-	protected $table = 'PROFESSEUR';
-	protected $primaryKey = 'IDPROF';
+	protected $table = 'A_VOTE_SONDAGE';
+	protected $primaryKey = 'NUMEROVOTE';
 	public $timestamps = false;
 
 	protected $casts = [
-		'IDMATIERE' => 'int',
+		'IDSONDAGE' => 'int',
 		'IDUTILISATEUR' => 'int'
 	];
 
 	protected $fillable = [
-		'IDMATIERE',
+		'IDSONDAGE',
 		'IDUTILISATEUR',
-		'NOMPROF',
-		'PRENOMPROF'
+		'AVIS'
 	];
 
-	public function c_o_u_r()
+	public function s_o_n_d_a_g_e()
 	{
-		return $this->belongsTo(COUR::class, 'IDMATIERE');
+		return $this->belongsTo(SONDAGE::class, 'IDSONDAGE');
 	}
 
 	public function u_t_i_l_i_s_a_t_e_u_r()

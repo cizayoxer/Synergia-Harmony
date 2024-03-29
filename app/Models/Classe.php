@@ -11,10 +11,10 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class CLASSE
- *
+ * 
  * @property int $IDSPECIALITE
  * @property string $LIBELLESPECIALITE
- *
+ * 
  * @property Collection|COUR[] $c_o_u_r_s
  * @property Collection|ETREINCLU[] $e_t_r_e_i_n_c_l_u_s
  *
@@ -32,7 +32,7 @@ class CLASSE extends Model
 
 	public function c_o_u_r_s()
 	{
-		return $this->hasMany(Cour::class, 'IDSPECIALITE');
+		return $this->hasMany(COUR::class, 'IDSPECIALITE');
 	}
 
 	public function e_t_r_e_i_n_c_l_u_s()

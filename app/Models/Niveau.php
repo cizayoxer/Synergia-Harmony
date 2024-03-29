@@ -11,10 +11,10 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class NIVEAU
- *
+ * 
  * @property int $IDNIVEAU
  * @property string $LIBELLENIVEAU
- *
+ * 
  * @property Collection|ECHANGECOMPETENCE[] $e_c_h_a_n_g_e_c_o_m_p_e_t_e_n_c_e_s
  * @property Collection|ETUDIANT[] $e_t_u_d_i_a_n_t_s
  *
@@ -32,11 +32,11 @@ class NIVEAU extends Model
 
 	public function e_c_h_a_n_g_e_c_o_m_p_e_t_e_n_c_e_s()
 	{
-		return $this->hasMany(EchangeCompetence::class, 'IDNIVEAU');
+		return $this->hasMany(ECHANGECOMPETENCE::class, 'IDNIVEAU');
 	}
 
 	public function e_t_u_d_i_a_n_t_s()
 	{
-		return $this->hasMany(Etudiant::class, 'IDNIVEAU');
+		return $this->hasMany(ETUDIANT::class, 'IDNIVEAU');
 	}
 }
