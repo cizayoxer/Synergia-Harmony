@@ -134,6 +134,11 @@ class UserController extends Controller
         return response()->json($user, 200, [], JSON_UNESCAPED_UNICODE);
     }
 
+    public function getUserByEmail(Request $request, $email)
+    {
+        $user = Utilisateur::where('EMAILUTILISATEUR', $email)->first();
+        return response()->json($user, 200, [], JSON_UNESCAPED_UNICODE);
+    }
 
 
 
