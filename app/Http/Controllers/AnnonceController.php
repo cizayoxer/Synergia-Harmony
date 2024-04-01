@@ -17,6 +17,24 @@ class AnnonceController extends Controller
         return response()->json($annonces, 200, [], JSON_UNESCAPED_UNICODE);
     }
 
+    public function getAnnoncesSemainePrecedente(Request $request)
+    {
+
+            $dateActuelle = now();
+
+            // Date il y a une semaine
+            $dateUneSemaineAvant = $dateActuelle->subWeek();
+
+            $annonces = Annonce::whereBetween('DATE_PUBLICATION', [$dateUneSemaineAvant, now()])
+                ->orderBy('DATE_PUBLICATION', 'desc')
+                ->get();
+
+            return response()->json($annonces, 200, [], JSON_UNESCAPED_UNICODE);
+
+    }
+
+
+
     public function getAnnonceById(Request $request,$annonceId)
     {
         return response()->json(Annonce::find($annonceId));
