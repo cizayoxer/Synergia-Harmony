@@ -25,6 +25,16 @@ class EvenementController extends Controller
         return response()->json($evenementsSport, 200, [], JSON_UNESCAPED_UNICODE);
     }
 
+    public function getEvenementsSportById(Request $request, $idService)
+    {
+        $evenementsSport = EvenementSportif::find($idService);
+
+        $nomService = $evenementsSport->s_e_r_v_i_c_e->LIBELLESERVICE;
+
+        return response()->json($evenementsSport, 200, [], JSON_UNESCAPED_UNICODE);
+    }
+
+
     public function getEvenementsCinema()
     {
         $evenementsCinema = Cinema::all();
@@ -34,4 +44,14 @@ class EvenementController extends Controller
         }
         return response()->json($evenementsCinema, 200, [], JSON_UNESCAPED_UNICODE);
     }
+
+    public function getEvenementsCinemaById(Request $request, $idService)
+    {
+        $evenementCinema = Cinema::find($idService);
+
+        $nomService = $evenementCinema->s_e_r_v_i_c_e->LIBELLESERVICE;
+
+        return response()->json($evenementCinema, 200, [], JSON_UNESCAPED_UNICODE);
+    }
+
 }

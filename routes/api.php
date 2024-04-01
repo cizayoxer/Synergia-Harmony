@@ -90,7 +90,9 @@ Route::get('/sondage/{sondageByid}', [SondageController::class,"getSondageById"]
 
 #----------# Events#---------------#
 Route::get("/events/cinema",[EvenementController::class,'getEvenementsCinema']);
+Route::get("/events/cinema/{idService}",[EvenementController::class,"getEvenementsCinemaById"]);
 Route::get("/events/sport",[EvenementController::class,'getEvenementsSport']);
+Route::get("/events/sport/{idService}",[EvenementController::class,"getEvenementsSportById"]);
 
 #----------# Convoiturage#---------------#
 Route::get("/covoiturages",[CovoiturageController::class,'getConvoits']);
