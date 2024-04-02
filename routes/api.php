@@ -51,8 +51,8 @@ Route::get('/sport/{sportById}', [SportController::class, "getSportById"]);
 
 #----------# Loisirs #---------------#
 //Route::get('/loisirsType', [LoisirController::class, "getLoisirsType"]);
-//Route::get('/loisirs', [LoisirController::class, "getLoisirs"]);
-//Route::get('/loisir/{loisirByid}', [LoisirController::class, "getLoisirById"]);
+Route::get('/loisirs', [LoisirController::class, "getLoisirs"]);
+Route::get('/loisir/{loisirByid}', [LoisirController::class, "getLoisirById"]);
 
 
 #----------# Professeurs #---------------#

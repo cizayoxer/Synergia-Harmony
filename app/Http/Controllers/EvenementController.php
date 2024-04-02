@@ -18,7 +18,7 @@ class EvenementController extends Controller
         // Parcourir chaque événement sportif
         foreach ($evenementsSport as $evenement) {
             // Récupérer le nom du sport associé à partir de la relation
-            $nomSport = $evenement->s_p_o_r_t->LIBELLESPORT;
+            $nomSport = $evenement->LIBELLESPORT;
             $nomService = $evenement->s_e_r_v_i_c_e->LIBELLESERVICE;
         }
 
