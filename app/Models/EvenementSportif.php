@@ -50,4 +50,9 @@ class EVENEMENTSPORTIF extends Model
 	{
 		return $this->belongsTo(Sport::class, 'IDSPORT');
 	}
+
+    public function nbPersonneReservation()
+    {
+        return $this->hasMany(Reservation::class,'IDSERVICE')->count();
+    }
 }

@@ -44,4 +44,8 @@ class LOISIR extends Model
 	{
 		return $this->belongsTo(TypeLoisir::class, 'IDLOISIR');
 	}
+    public function nbPersonneReservation()
+    {
+        return $this->hasMany(Reservation::class,'IDSERVICE')->count();
+    }
 }

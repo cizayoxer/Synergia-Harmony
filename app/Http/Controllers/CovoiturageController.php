@@ -18,13 +18,17 @@ class CovoiturageController extends Controller
         foreach ($convoits as $convoit) {
             // Récupérer le nom du sport associé à partir de la relation
             $nomService = $convoit->s_e_r_v_i_c_e->LIBELLESERVICE;
-//            $convoit->LIBELLESERVICE=$nomService;
+            $nombreDeReservations = $convoit->nbPersonneReservation();
+            $convoit->nombreDeReservations = $nombreDeReservations;
+
         }
         return response()->json($convoits, 200, [], JSON_UNESCAPED_UNICODE);
     }
 
     public function getConvoitById(Request $request, $convoit)
     {
+        $nombreDeReservations = $convoit->nbPersonneReservation();
+        $convoit->nombreDeReservations = $nombreDeReservations;
         return response()->json(Covoiturage::find($convoit));
     }
 }

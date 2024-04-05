@@ -19,10 +19,9 @@ class EchangCompetController extends Controller
             $nomMatiere = $echange->NOM_MATIERE;
             $nomNiveau = $echange->n_i_v_e_a_u->NOM_NIVEAU;
             $nomService = $echange->s_e_r_v_i_c_e->LIBELLESERVICE;
+            $nombreDeReservations = $echange->nbPersonneReservation();
+            $echange->nombreDeReservations = $nombreDeReservations;
 
-            // Ajouter les noms de matière et de niveau à l'échange de compétence
-//            $echange->nom_matiere = $nomMatiere;
-//            $echange->nom_niveau = $nomNiveau;
         }
 
         // Retourner la réponse JSON
@@ -37,13 +36,12 @@ class EchangCompetController extends Controller
 
         // Vérifier si l'échange de compétence existe
         if ($echange) {
-            // Récupérer le nom de la matière et le nom du niveau à partir des relations
+
             $nomMatiere = $echange->c_o_u_r->NOM_MATIERE;
             $nomNiveau = $echange->n_i_v_e_a_u->NOM_NIVEAU;
             $nomService = $echange->s_e_r_v_i_c_e->LIBELLESERVICE;
-            // Ajouter les noms de matière et de niveau à l'échange de compétence
-//            $echange->nom_matiere = $nomMatiere;
-//            $echange->nom_niveau = $nomNiveau;
+            $nombreDeReservations = $echange->nbPersonneReservation();
+            $echange->nombreDeReservations = $nombreDeReservations;
 
             // Retourner la réponse JSON
             return response()->json($echange, 200);

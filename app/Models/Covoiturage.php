@@ -43,4 +43,9 @@ class COVOITURAGE extends Model
 	{
 		return $this->belongsTo(Service::class, 'IDSERVICE');
 	}
+
+    public function nbPersonneReservation()
+    {
+        return $this->hasMany(Reservation::class,'IDSERVICE')->count();
+    }
 }

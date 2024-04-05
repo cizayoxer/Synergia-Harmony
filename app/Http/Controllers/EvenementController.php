@@ -20,6 +20,8 @@ class EvenementController extends Controller
             // Récupérer le nom du sport associé à partir de la relation
             $nomSport = $evenement->LIBELLESPORT;
             $nomService = $evenement->s_e_r_v_i_c_e->LIBELLESERVICE;
+            $nombreDeReservations = $evenement->nbPersonneReservation();
+            $evenement->nombreDeReservations = $nombreDeReservations;
         }
 
         return response()->json($evenementsSport, 200, [], JSON_UNESCAPED_UNICODE);
@@ -31,6 +33,9 @@ class EvenementController extends Controller
 
         $nomService = $evenementsSport->s_e_r_v_i_c_e->LIBELLESERVICE;
 
+        $nombreDeReservations = $evenementsSport->nbPersonneReservation();
+        $evenementsSport->nombreDeReservations = $nombreDeReservations;
+
         return response()->json($evenementsSport, 200, [], JSON_UNESCAPED_UNICODE);
     }
 
@@ -38,10 +43,16 @@ class EvenementController extends Controller
     public function getEvenementsCinema()
     {
         $evenementsCinema = Cinema::all();
-        foreach ($evenementsCinema as $cinema) {
 
+        foreach ($evenementsCinema as $cinema) {
             $nomService = $cinema->s_e_r_v_i_c_e->LIBELLESERVICE;
+
+            // Utilisez la méthode nbPersonneReservation() pour obtenir le nombre de réservations
+            $nombreDeReservations = $cinema->nbPersonneReservation();
+            $cinema->nombreDeReservations = $nombreDeReservations;
         }
+
+
         return response()->json($evenementsCinema, 200, [], JSON_UNESCAPED_UNICODE);
     }
 
@@ -50,6 +61,8 @@ class EvenementController extends Controller
         $evenementCinema = Cinema::find($idService);
 
         $nomService = $evenementCinema->s_e_r_v_i_c_e->LIBELLESERVICE;
+        $nombreDeReservations = $evenementCinema->nbPersonneReservation();
+        $evenementCinema->nombreDeReservations = $nombreDeReservations;
 
         return response()->json($evenementCinema, 200, [], JSON_UNESCAPED_UNICODE);
     }

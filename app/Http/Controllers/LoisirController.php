@@ -24,7 +24,8 @@ class LoisirController extends Controller
         foreach ($loisirs as $loisir) {
 
             $nomService = $loisir->s_e_r_v_i_c_e->LIBELLESERVICE;
-
+            $nombreDeReservations = $loisir->nbPersonneReservation();
+            $loisir->nombreDeReservations = $nombreDeReservations;
         }
         return response()->json($loisirs, 200, [], JSON_UNESCAPED_UNICODE);
     }
@@ -34,6 +35,8 @@ class LoisirController extends Controller
         $loisirs = Loisir::find($loisirId);
 
         $nomService = $loisirs->s_e_r_v_i_c_e->LIBELLESERVICE;
+        $nombreDeReservations = $loisirs->nbPersonneReservation();
+        $loisirs->nombreDeReservations = $nombreDeReservations;
         return response()->json($loisirs, 200, [], JSON_UNESCAPED_UNICODE);
     }
 
