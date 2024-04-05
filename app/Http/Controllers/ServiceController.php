@@ -32,4 +32,15 @@ class ServiceController extends Controller
         return response()->json($reservation);
     }
 
+    public function getReservationUsers(Request $request, $idUser)
+    {
+
+        $reservations = Reservation::where('IDACHETEUR', $idUser)->get();
+
+
+        return response()->json($reservations);
+    }
+
+
+
 }

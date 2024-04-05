@@ -66,6 +66,9 @@ Route::get('/service/{serviceByid}', [ServiceController::class,"getServiceById"]
 
 #----------# Reserve #---------------#
 Route::post('/reserver/{idUser}/{idService}', [ServiceController::class, "reserverService"]);
+Route::get('/reservation/{idUser}', [ServiceController::class, "getReservationUsers"]);
+///reservation/{idUser}
+
 
 #----------# Cours #---------------#
 Route::get('/cours', [CourController::class, "getCours"]);
@@ -87,7 +90,8 @@ Route::get('/accueil', [AccueilController::class, "getAccueil"]);
 #----------# Sondage #---------------#
 Route::get('/sondages', [SondageController::class, "getSondages"]);
 Route::get('/sondage/{sondageByid}', [SondageController::class,"getSondageById"]);
-
+Route::post("/sondage/votePour",[SondageController::class,'votePourSondage']);
+Route::post("/sondage/voteContre",[SondageController::class,'voteContreSondage']);
 
 #----------# Events#---------------#
 Route::get("/events/cinema",[EvenementController::class,'getEvenementsCinema']);
@@ -99,6 +103,6 @@ Route::get("/events/sport/{idService}",[EvenementController::class,"getEvenement
 Route::get("/covoiturages",[CovoiturageController::class,'getConvoits']);
 Route::get("/covoiturage/{covoiturageId}",[CovoiturageController::class,'getConvoitById']);
 
-#----------# Convoiturage#---------------#
+#----------# EchangeCompetences #---------------#
 Route::get("/echangeCompetences",[EchangCompetController::class,'getAllEchanges']);
 Route::get("/echangeCompetence/{echangeCompId}",[EchangCompetController::class,'getEchangeById']);
