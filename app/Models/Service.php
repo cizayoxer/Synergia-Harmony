@@ -111,4 +111,9 @@ class SERVICE extends Model
 	{
 		return $this->hasMany(Reservation::class, 'IDSERVICE');
 	}
+
+    public function typeService()
+    {
+        return $this->belongsTo(TypeService::class, 'typeService');
+    }
 }

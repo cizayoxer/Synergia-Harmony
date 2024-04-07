@@ -33,4 +33,10 @@ class TypeService extends Model
 	{
 		return $this->hasMany(Service::class, 'typeService');
 	}
+
+
+    public function services()
+    {
+        return $this->hasMany(Service::class, 'typeService');
+    }
 }

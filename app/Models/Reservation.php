@@ -49,4 +49,14 @@ class Reservation extends Model
 	{
 		return $this->belongsTo(Service::class, 'IDSERVICE');
 	}
+
+    public function typeService()
+    {
+        return $this->belongsTo(TypeService::class, 'typeService');
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class, 'IDSERVICE');
+    }
 }

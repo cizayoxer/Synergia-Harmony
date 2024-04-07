@@ -34,9 +34,7 @@ class ServiceController extends Controller
 
     public function getReservationUsers(Request $request, $idUser)
     {
-
-        $reservations = Reservation::where('IDACHETEUR', $idUser)->get();
-
+        $reservations = Reservation::where('IDACHETEUR', $idUser)->with('service.typeService')->get();
 
         return response()->json($reservations);
     }
