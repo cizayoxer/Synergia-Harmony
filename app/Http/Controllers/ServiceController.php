@@ -40,5 +40,38 @@ class ServiceController extends Controller
     }
 
 
+    public function getAutres(Request $request)
+    {
+        $autres=Service::where('typeService',3)->get();
+        if ($autres==null)
+        {
+            return response()->json(['message' => 'Service non trouvé.'], 404);
+        }
+        else
+        {
+            return response()->json($autres);
+        }
+
+    }
+
+    public function getAutreById(Request $request,$idService)
+    {
+        $autre=Service::find($idService);
+
+
+        if ($autre==null)
+        {
+            return response()->json(['message' => 'Service non trouvé.'], 404);
+        }
+        else
+        {
+            $autre->where('typeService',3)->get();
+            return response()->json($autre);
+        }
+
+
+
+    }
+
 
 }

@@ -106,3 +106,6 @@ Route::get("/covoiturage/{covoiturageId}",[CovoiturageController::class,'getConv
 #----------# EchangeCompetences #---------------#
 Route::get("/echangeCompetences",[EchangCompetController::class,'getAllEchanges']);
 Route::get("/echangeCompetence/{echangeCompId}",[EchangCompetController::class,'getEchangeById']);
+
+Route::get("/autres",[ServiceController::class,'getAutres']);
+Route::get("/autre/{idService}",[ServiceController::class,'getAutreById']);
