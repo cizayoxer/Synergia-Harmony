@@ -4,45 +4,42 @@ namespace App\Http\Controllers;
 
 use App\Models\EchangeCompetence;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class EchangCompetController extends Controller
 {
 
     public function getAllEchanges()
     {
-        // Récupérer toutes les échanges de compétence
-        $echanges = EchangeCompetence::all();
+        $aujourdhui = Carbon::now();
 
-        if ($echanges==null)
-        {
-            return response()->json(['message' => 'Service non trouvé.'], 404);
-        }
-        else
-        {
-            // Parcourir chaque échange de compétence pour obtenir les détails de matière et de niveau
+        $echanges = EchangeCompetence::whereHas('s_e_r_v_i_c_e', function ($query) use ($aujourdhui) {
+            $query->where('DATEPREVUE', '>', $aujourdhui)
+                ->where('IDSTATUT', '=', 1);
+        })->get();
+
+        if ($echanges->isEmpty()) {
+            return response()->json(['message' => 'Aucun échange de compétence prévu pour une date ultérieure avec ce statut.'], 404);
+        } else {
             foreach ($echanges as $echange) {
-                // Récupérer le nom de la matière et le nom du niveau à partir des relations
                 $nomMatiere = $echange->NOM_MATIERE;
                 $nomNiveau = $echange->n_i_v_e_a_u->NOM_NIVEAU;
                 $nomService = $echange->s_e_r_v_i_c_e->LIBELLESERVICE;
                 $nombreDeReservations = $echange->nbPersonneReservation();
                 $echange->nombreDeReservations = $nombreDeReservations;
-
             }
 
-            // Retourner la réponse JSON
             return response()->json($echanges, 200);
         }
-
     }
+
+
 
 
     public function getEchangeById($idService)
     {
-        // Récupérer l'échange de compétence par ID de service
         $echange = EchangeCompetence::find($idService);
 
-        // Vérifier si l'échange de compétence existe
         if ($echange) {
 
             $nomMatiere = $echange->NOM_MATIERE;
@@ -51,10 +48,8 @@ class EchangCompetController extends Controller
             $nombreDeReservations = $echange->nbPersonneReservation();
             $echange->nombreDeReservations = $nombreDeReservations;
 
-            // Retourner la réponse JSON
             return response()->json($echange, 200);
         } else {
-            // Retourner une réponse JSON avec un message d'erreur
             return response()->json(['message' => 'Échange de compétence non trouvé.'], 404);
         }
     }

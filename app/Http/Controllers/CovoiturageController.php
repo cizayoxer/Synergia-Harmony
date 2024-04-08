@@ -4,24 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Covoiturage;
 use Illuminate\Http\Request;
-use OpenApi\Annotations as OA;
-use Symfony\Component\HttpFoundation\JsonResponse;
-
+use Carbon\Carbon;
 class CovoiturageController extends Controller
 {
 
     public function getConvoits(Request $request)
     {
-        $convoits = Covoiturage::all();
+        $aujourdhui = Carbon::now();
+        $convoits = Covoiturage::where('DATECOVOIT', '>', $aujourdhui)
+            ->whereHas('s_e_r_v_i_c_e', function ($query) {
+                $query->where('IDSTATUT', '=', 1);
+            })
+            ->get();
         if ($convoits==null)
         {
             return response()->json(['message' => 'Service non trouvé.'], 404);
         }
         else
         {
-        // Parcourir chaque événement sportif
+
             foreach ($convoits as $convoit) {
-                // Récupérer le nom du sport associé à partir de la relation
                 $nomService = $convoit->s_e_r_v_i_c_e->LIBELLESERVICE;
                 $nombreDeReservations = $convoit->nbPersonneReservation();
                 $convoit->nombreDeReservations = $nombreDeReservations;
@@ -33,7 +35,6 @@ class CovoiturageController extends Controller
 
     public function getConvoitById(Request $request, $convoit)
     {
-
         $convoiturage=Covoiturage::find($convoit);
         if ($convoiturage==null)
         {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\A_VOTE_SONDAGE;
 use App\Models\AVOTESONDAGE;
 use App\Models\SONDAGE; // Utiliser le modèle Sondage correctement
+use App\Models\UTILISATEUR;
 use Illuminate\Http\Request;
 use OpenApi\Annotations as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -61,7 +62,8 @@ class SondageController extends Controller
             'AVIS' => 'POUR'
         ]);
 
-
+        $user=Utilisateur::where('IDTILISATEUR',$userId);
+        $user->increment('SOLDE', 10);
         return response()->json("Votre vote a été pris en compte", 200, [], JSON_UNESCAPED_UNICODE);
 
     }
@@ -88,7 +90,8 @@ class SondageController extends Controller
                     'AVIS' => 'CONTRE'
                 ]);
 
-
+        $user=Utilisateur::where('IDTILISATEUR',$userId);
+        $user->increment('SOLDE', 10);
         return response()->json("Votre vote a été pris en compte", 200, [], JSON_UNESCAPED_UNICODE);
 
     }

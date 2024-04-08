@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Loisir;
 use App\Models\TypeLoisir;
 use Illuminate\Http\Request;
-use OpenApi\Annotations as OA;
-use Symfony\Component\HttpFoundation\JsonResponse;
-
+use Carbon\Carbon;
 class LoisirController extends Controller
 {
 
@@ -18,26 +16,33 @@ class LoisirController extends Controller
         return response()->json($loisirs, 200, [], JSON_UNESCAPED_UNICODE);
     }
 
+
+
     public function getLoisirs(Request $request)
     {
-        $loisirs = Loisir::all();
 
-        if ($loisirs==null)
-        {
-            return response()->json(['message' => 'Service non trouvé.'], 404);
-        }
-        else
-        {
+        $aujourdhui = Carbon::now();
+        $loisirs = Loisir::whereHas('s_e_r_v_i_c_e', function ($query) use ($aujourdhui) {
+            $query->where('DATEPREVUE', '>', $aujourdhui)
+                ->where('IDSTATUT', '=', 1);
+        })->get();
+
+        if ($loisirs->isEmpty()) {
+            return response()->json(['message' => 'Aucun loisir prévu pour une date ultérieure avec ce statut.'], 404);
+        } else {
+
             foreach ($loisirs as $loisir) {
 
                 $nomService = $loisir->s_e_r_v_i_c_e->LIBELLESERVICE;
                 $nombreDeReservations = $loisir->nbPersonneReservation();
                 $loisir->nombreDeReservations = $nombreDeReservations;
             }
+
             return response()->json($loisirs, 200, [], JSON_UNESCAPED_UNICODE);
         }
-
     }
+
+
 
     public function getLoisirById(Request $request, $loisirId)
     {

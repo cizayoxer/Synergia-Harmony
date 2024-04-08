@@ -5,23 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Cinema;
 use App\Models\EvenementSportif;
 use Illuminate\Http\Request;
-use OpenApi\Annotations as OA;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Carbon\Carbon;
+
 
 class EvenementController extends Controller
 {
 
+
     public function getEvenementsSport()
     {
-        $evenementsSport = EvenementSportif::all();
-        if ($evenementsSport==null)
-        {
-            return response()->json(['message' => 'Service non trouvé.'], 404);
-        }
-        else {
-            // Parcourir chaque événement sportif
+        $aujourdhui = Carbon::now();
+
+        $evenementsSport = EvenementSportif::whereHas('s_e_r_v_i_c_e', function ($query) use ($aujourdhui) {
+            $query->where('DATEPREVUE', '>', $aujourdhui)
+                ->where('IDSTATUT', '=', 1);
+        })->get();
+
+        if ($evenementsSport->isEmpty()) {
+            return response()->json(['message' => 'Aucun événement sportif prévu pour une date ultérieure avec ce statut.'], 404);
+        } else {
             foreach ($evenementsSport as $evenement) {
-                // Récupérer le nom du sport associé à partir de la relation
                 $nomSport = $evenement->LIBELLESPORT;
                 $nomService = $evenement->s_e_r_v_i_c_e->LIBELLESERVICE;
                 $nombreDeReservations = $evenement->nbPersonneReservation();
@@ -31,6 +34,8 @@ class EvenementController extends Controller
             return response()->json($evenementsSport, 200, [], JSON_UNESCAPED_UNICODE);
         }
     }
+
+
 
     public function getEvenementsSportById(Request $request, $idService)
     {
@@ -53,25 +58,27 @@ class EvenementController extends Controller
 
     public function getEvenementsCinema()
     {
-        $evenementsCinema = Cinema::all();
-        if ($evenementsCinema==null)
-        {
-            return response()->json(['message' => 'Service non trouvé.'], 404);
-        }
-        else {
-            foreach ($evenementsCinema as $cinema) {
-                $nomService = $cinema->s_e_r_v_i_c_e->LIBELLESERVICE;
+        $maintenant = Carbon::now();
 
-                // Utilisez la méthode nbPersonneReservation() pour obtenir le nombre de réservations
+        $evenementsCinema = Cinema::where('DATEHEUREFILM', '>', $maintenant)
+            ->whereHas('s_e_r_v_i_c_e', function ($query) {
+                $query->where('IDSTATUT', '=', 1);
+            })
+            ->get();
+
+        if ($evenementsCinema->isEmpty()) {
+            return response()->json(['message' => 'Aucun événement cinéma prévu pour une date ultérieure avec ce statut.'], 404);
+        } else {
+            foreach ($evenementsCinema as $cinema) {
+
+                $nomService = $cinema->s_e_r_v_i_c_e->LIBELLESERVICE;
                 $nombreDeReservations = $cinema->nbPersonneReservation();
                 $cinema->nombreDeReservations = $nombreDeReservations;
-
             }
             return response()->json($evenementsCinema, 200, [], JSON_UNESCAPED_UNICODE);
         }
-
-
     }
+
 
     public function getEvenementsCinemaById(Request $request, $idService)
     {
