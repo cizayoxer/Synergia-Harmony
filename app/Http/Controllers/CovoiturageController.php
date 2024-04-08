@@ -13,23 +13,41 @@ class CovoiturageController extends Controller
     public function getConvoits(Request $request)
     {
         $convoits = Covoiturage::all();
-
-        // Parcourir chaque événement sportif
-        foreach ($convoits as $convoit) {
-            // Récupérer le nom du sport associé à partir de la relation
-            $nomService = $convoit->s_e_r_v_i_c_e->LIBELLESERVICE;
-            $nombreDeReservations = $convoit->nbPersonneReservation();
-            $convoit->nombreDeReservations = $nombreDeReservations;
-
+        if ($convoits==null)
+        {
+            return response()->json(['message' => 'Service non trouvé.'], 404);
         }
-        return response()->json($convoits, 200, [], JSON_UNESCAPED_UNICODE);
+        else
+        {
+        // Parcourir chaque événement sportif
+            foreach ($convoits as $convoit) {
+                // Récupérer le nom du sport associé à partir de la relation
+                $nomService = $convoit->s_e_r_v_i_c_e->LIBELLESERVICE;
+                $nombreDeReservations = $convoit->nbPersonneReservation();
+                $convoit->nombreDeReservations = $nombreDeReservations;
+
+            }
+            return response()->json($convoits, 200, [], JSON_UNESCAPED_UNICODE);
+        }
     }
 
     public function getConvoitById(Request $request, $convoit)
     {
+
         $convoiturage=Covoiturage::find($convoit);
-        $nombreDeReservations = $convoiturage->nbPersonneReservation();
-        $convoiturage->nombreDeReservations = $nombreDeReservations;
-        return response()->json($convoiturage);
+        if ($convoiturage==null)
+        {
+            return response()->json(['message' => 'Service non trouvé.'], 404);
+        }
+        else
+        {
+            $nombreDeReservations = $convoiturage->nbPersonneReservation();
+            $convoiturage->nombreDeReservations = $nombreDeReservations;
+
+            $service = $convoiturage->s_e_r_v_i_c_e;
+
+            return response()->json($convoiturage);
+        }
+
     }
 }

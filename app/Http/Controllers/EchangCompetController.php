@@ -13,19 +13,27 @@ class EchangCompetController extends Controller
         // Récupérer toutes les échanges de compétence
         $echanges = EchangeCompetence::all();
 
-        // Parcourir chaque échange de compétence pour obtenir les détails de matière et de niveau
-        foreach ($echanges as $echange) {
-            // Récupérer le nom de la matière et le nom du niveau à partir des relations
-            $nomMatiere = $echange->NOM_MATIERE;
-            $nomNiveau = $echange->n_i_v_e_a_u->NOM_NIVEAU;
-            $nomService = $echange->s_e_r_v_i_c_e->LIBELLESERVICE;
-            $nombreDeReservations = $echange->nbPersonneReservation();
-            $echange->nombreDeReservations = $nombreDeReservations;
+        if ($echanges==null)
+        {
+            return response()->json(['message' => 'Service non trouvé.'], 404);
+        }
+        else
+        {
+            // Parcourir chaque échange de compétence pour obtenir les détails de matière et de niveau
+            foreach ($echanges as $echange) {
+                // Récupérer le nom de la matière et le nom du niveau à partir des relations
+                $nomMatiere = $echange->NOM_MATIERE;
+                $nomNiveau = $echange->n_i_v_e_a_u->NOM_NIVEAU;
+                $nomService = $echange->s_e_r_v_i_c_e->LIBELLESERVICE;
+                $nombreDeReservations = $echange->nbPersonneReservation();
+                $echange->nombreDeReservations = $nombreDeReservations;
 
+            }
+
+            // Retourner la réponse JSON
+            return response()->json($echanges, 200);
         }
 
-        // Retourner la réponse JSON
-        return response()->json($echanges, 200);
     }
 
 

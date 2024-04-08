@@ -21,23 +21,38 @@ class LoisirController extends Controller
     public function getLoisirs(Request $request)
     {
         $loisirs = Loisir::all();
-        foreach ($loisirs as $loisir) {
 
-            $nomService = $loisir->s_e_r_v_i_c_e->LIBELLESERVICE;
-            $nombreDeReservations = $loisir->nbPersonneReservation();
-            $loisir->nombreDeReservations = $nombreDeReservations;
+        if ($loisirs==null)
+        {
+            return response()->json(['message' => 'Service non trouvé.'], 404);
         }
-        return response()->json($loisirs, 200, [], JSON_UNESCAPED_UNICODE);
+        else
+        {
+            foreach ($loisirs as $loisir) {
+
+                $nomService = $loisir->s_e_r_v_i_c_e->LIBELLESERVICE;
+                $nombreDeReservations = $loisir->nbPersonneReservation();
+                $loisir->nombreDeReservations = $nombreDeReservations;
+            }
+            return response()->json($loisirs, 200, [], JSON_UNESCAPED_UNICODE);
+        }
+
     }
 
     public function getLoisirById(Request $request, $loisirId)
     {
         $loisirs = Loisir::find($loisirId);
 
-        $nomService = $loisirs->s_e_r_v_i_c_e->LIBELLESERVICE;
-        $nombreDeReservations = $loisirs->nbPersonneReservation();
-        $loisirs->nombreDeReservations = $nombreDeReservations;
-        return response()->json($loisirs, 200, [], JSON_UNESCAPED_UNICODE);
+        if ($loisirs==null)
+        {
+            return response()->json(['message' => 'Service non trouvé.'], 404);
+        }
+        else {
+            $nomService = $loisirs->s_e_r_v_i_c_e->LIBELLESERVICE;
+            $nombreDeReservations = $loisirs->nbPersonneReservation();
+            $loisirs->nombreDeReservations = $nombreDeReservations;
+            return response()->json($loisirs, 200, [], JSON_UNESCAPED_UNICODE);
+        }
     }
 
 
