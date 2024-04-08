@@ -27,8 +27,9 @@ class CovoiturageController extends Controller
 
     public function getConvoitById(Request $request, $convoit)
     {
-        $nombreDeReservations = $convoit->nbPersonneReservation();
-        $convoit->nombreDeReservations = $nombreDeReservations;
-        return response()->json(Covoiturage::find($convoit));
+        $convoiturage=Covoiturage::find($convoit);
+        $nombreDeReservations = $convoiturage->nbPersonneReservation();
+        $convoiturage->nombreDeReservations = $nombreDeReservations;
+        return response()->json($convoiturage);
     }
 }

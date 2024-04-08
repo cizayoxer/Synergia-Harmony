@@ -37,7 +37,7 @@ class EchangCompetController extends Controller
         // Vérifier si l'échange de compétence existe
         if ($echange) {
 
-            $nomMatiere = $echange->c_o_u_r->NOM_MATIERE;
+            $nomMatiere = $echange->NOM_MATIERE;
             $nomNiveau = $echange->n_i_v_e_a_u->NOM_NIVEAU;
             $nomService = $echange->s_e_r_v_i_c_e->LIBELLESERVICE;
             $nombreDeReservations = $echange->nbPersonneReservation();
