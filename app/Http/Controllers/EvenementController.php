@@ -67,7 +67,7 @@ class EvenementController extends Controller
             ->get();
 
         if ($evenementsCinema->isEmpty()) {
-            return response()->json(['message' => 'Aucun événement cinéma prévu pour une date ultérieure avec ce statut.'], 404);
+            return response()->json();
         } else {
             foreach ($evenementsCinema as $cinema) {
 
@@ -85,7 +85,7 @@ class EvenementController extends Controller
         $evenementCinema = Cinema::find($idService);
         if ($evenementCinema==null)
         {
-            return response()->json(['message' => 'Service non trouvé.'], 404);
+            return response()->json();
         }
         else {
             $nomService = $evenementCinema->s_e_r_v_i_c_e->LIBELLESERVICE;

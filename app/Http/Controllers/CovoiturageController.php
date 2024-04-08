@@ -18,7 +18,7 @@ class CovoiturageController extends Controller
             ->get();
         if ($convoits==null)
         {
-            return response()->json(['message' => 'Service non trouvé.'], 404);
+            return response()->json();
         }
         else
         {
@@ -38,7 +38,7 @@ class CovoiturageController extends Controller
         $convoiturage=Covoiturage::find($convoit);
         if ($convoiturage==null)
         {
-            return response()->json(['message' => 'Service non trouvé.'], 404);
+            return response()->json();
         }
         else
         {

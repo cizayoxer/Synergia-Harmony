@@ -19,7 +19,7 @@ class EchangCompetController extends Controller
         })->get();
 
         if ($echanges->isEmpty()) {
-            return response()->json(['message' => 'Aucun échange de compétence prévu pour une date ultérieure avec ce statut.'], 404);
+            return response()->json();
         } else {
             foreach ($echanges as $echange) {
                 $nomMatiere = $echange->NOM_MATIERE;
@@ -50,7 +50,7 @@ class EchangCompetController extends Controller
 
             return response()->json($echange, 200);
         } else {
-            return response()->json(['message' => 'Échange de compétence non trouvé.'], 404);
+            return response()->json();
         }
     }
 }

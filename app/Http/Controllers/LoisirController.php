@@ -28,7 +28,7 @@ class LoisirController extends Controller
         })->get();
 
         if ($loisirs->isEmpty()) {
-            return response()->json(['message' => 'Aucun loisir prévu pour une date ultérieure avec ce statut.'], 404);
+            return response()->json();
         } else {
 
             foreach ($loisirs as $loisir) {
@@ -50,7 +50,7 @@ class LoisirController extends Controller
 
         if ($loisirs==null)
         {
-            return response()->json(['message' => 'Service non trouvé.'], 404);
+            return response()->json();
         }
         else {
             $nomService = $loisirs->s_e_r_v_i_c_e->LIBELLESERVICE;
