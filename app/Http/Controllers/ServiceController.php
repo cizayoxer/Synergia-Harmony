@@ -39,6 +39,22 @@ class ServiceController extends Controller
         return response()->json($reservations);
     }
 
+    public function getReservationServiceByUser(Request $request, $idUser, $idService)
+    {
+        $reservation = Reservation::where('IDACHETEUR', $idUser)
+            ->where('IDSERVICE', $idService)
+            ->with('service.typeService')
+            ->first();
+
+        if ($reservation) {
+            return response()->json(true);
+        } else {
+            return response()->json(false);
+        }
+    }
+
+
+
 
     public function getAutres(Request $request)
     {
