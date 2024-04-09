@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reservation;
 use App\Models\Service;
 use App\Models\UTILISATEUR;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use OpenApi\Annotations as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -34,7 +35,16 @@ class ServiceController extends Controller
 
     public function getReservationUsers(Request $request, $idUser)
     {
-        $reservations = Reservation::where('IDACHETEUR', $idUser)->with('service.typeService')->get();
+
+
+        $now = Carbon::now(); // Récupère la date et l'heure actuelles
+
+        $reservations = Reservation::where('IDACHETEUR', $idUser)
+            ->whereHas('service', function ($query) use ($now) {
+                $query->where('DATEPREVUE', '<', $now);
+            })
+            ->with('service.typeService')
+            ->get();
 
         return response()->json($reservations);
     }
