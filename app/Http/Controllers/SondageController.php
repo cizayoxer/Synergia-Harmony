@@ -61,8 +61,8 @@ class SondageController extends Controller
             'AVIS' => 'POUR'
         ]);
 
-        $user=Utilisateur::where('IDUTILISATEUR',$userId);
-        $user->increment('SOLDE', 10);
+//        $user=Utilisateur::where('IDUTILISATEUR',$userId);
+//        $user->increment('SOLDE', 10);
         return response()->json("Votre vote a été pris en compte", 200, [], JSON_UNESCAPED_UNICODE);
 
     }
@@ -88,8 +88,8 @@ class SondageController extends Controller
                     'AVIS' => 'CONTRE'
                 ]);
 
-        $user=Utilisateur::where('IDUTILISATEUR',$userId);
-        $user->increment('SOLDE', 10);
+//        $user=Utilisateur::where('IDUTILISATEUR',$userId);
+//        $user->increment('SOLDE', 10);
         return response()->json("Votre vote a été pris en compte", 200, [], JSON_UNESCAPED_UNICODE);
 
     }
