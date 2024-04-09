@@ -9,6 +9,8 @@ class A_VOTE_SONDAGE extends Model
 
     protected $primaryKey = 'NUMEROVOTE';
 
+    public $timestamps = false;
+
     protected $fillable = [
     'IDSONDAGE',
     'IDUTILISATEUR',

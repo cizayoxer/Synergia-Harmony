@@ -47,7 +47,7 @@ class SondageController extends Controller
 
         $userId = $idUser;
 
-        $voteExist = AvoteSondage::where('IDSONDAGE', $idSondage)
+        $voteExist = A_VOTE_SONDAGE::where('IDSONDAGE', $idSondage)
             ->where('IDUTILISATEUR', $userId)
             ->exists();
 
@@ -61,7 +61,7 @@ class SondageController extends Controller
             'AVIS' => 'POUR'
         ]);
 
-        $user=Utilisateur::where('IDTILISATEUR',$userId);
+        $user=Utilisateur::where('IDUTILISATEUR',$userId);
         $user->increment('SOLDE', 10);
         return response()->json("Votre vote a été pris en compte", 200, [], JSON_UNESCAPED_UNICODE);
 
@@ -74,7 +74,7 @@ class SondageController extends Controller
 
         $userId = $idUser;
 
-        $voteExist = AvoteSondage::where('IDSONDAGE', $idSondage)
+        $voteExist = A_VOTE_SONDAGE::where('IDSONDAGE', $idSondage)
             ->where('IDUTILISATEUR', $userId)
             ->exists();
 
@@ -88,10 +88,46 @@ class SondageController extends Controller
                     'AVIS' => 'CONTRE'
                 ]);
 
-        $user=Utilisateur::where('IDTILISATEUR',$userId);
+        $user=Utilisateur::where('IDUTILISATEUR',$userId);
         $user->increment('SOLDE', 10);
         return response()->json("Votre vote a été pris en compte", 200, [], JSON_UNESCAPED_UNICODE);
 
     }
+
+//
+//    public function votePour(Request $request, int $idSondage,int $idUser)
+//    {
+//
+//                $userId = $idUser;
+//
+//                $voteExist = AvoteSondage::where('IDSONDAGE', $idSondage)
+//                    ->where('IDUTILISATEUR', $userId)
+//                    ->exists();
+//
+//                // Si l'utilisateur a déjà voté, renvoyer à la page précédente avec un message d'erreur
+//                if ($voteExist) {
+//                    return redirect()->back()->withErrors(['error' => 'Vous avez déjà voté pour ce sondage.', 'idSondage' => $idSondage]);
+//                }
+//
+//                // Insérer le vote dans la table A_VOTE_SONDAGE
+//                AvoteSondage::create([
+//                    'IDSONDAGE' => $idSondage,
+//                    'IDUTILISATEUR' => $userId,
+//                    'AVIS' => 'POUR' // Ou 'CONTRE' selon le cas
+//                ]);
+//
+//                // Redirection vers le tableau de bord avec un message de succès
+//                return redirect()->route('dashboard')->with('success', 'Votre vote a été enregistré avec succès.')->with('idSondage', $idSondage);
+//            } else {
+//                // Redirection vers le tableau de bord avec un message d'erreur
+//                return redirect()->route('dashboard')->withErrors(['error' => 'Vous devez être connecté pour voter.']);
+//            }
+//        } catch (\Exception $e) {
+//            // Redirection vers le tableau de bord avec un message d'erreur
+//            return redirect()->route('dashboard')->withErrors(['error' => 'Une erreur est survenue lors de l\'enregistrement de votre vote.']);
+//        }
+//    }
+
+
 
 }

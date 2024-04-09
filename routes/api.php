@@ -92,8 +92,8 @@ Route::get('/accueil', [AccueilController::class, "getAccueil"]);
 #----------# Sondage #---------------#
 Route::get('/sondages', [SondageController::class, "getSondages"]);
 Route::get('/sondage/{sondageByid}', [SondageController::class,"getSondageById"]);
-Route::post("/sondage/votePour/{idSondage}/{idUser}",[SondageController::class,'votePourSondage']);
-Route::post("/sondage/voteContre/{idSondage}/{idUser}",[SondageController::class,'voteContreSondage']);
+Route::get("/sondage/votePour/{idSondage}/{idUser}",[SondageController::class,'votePourSondage']);
+Route::get("/sondage/voteContre/{idSondage}/{idUser}",[SondageController::class,'voteContreSondage']);
 
 #----------# Events#---------------#
 Route::get("/events/cinema",[EvenementController::class,'getEvenementsCinema']);
