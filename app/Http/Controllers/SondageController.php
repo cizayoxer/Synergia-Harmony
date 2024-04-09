@@ -6,20 +6,21 @@ use App\Models\A_VOTE_SONDAGE;
 use App\Models\AVOTESONDAGE;
 use App\Models\SONDAGE; // Utiliser le modèle Sondage correctement
 use App\Models\UTILISATEUR;
+
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use OpenApi\Annotations as OA;
-use Symfony\Component\HttpFoundation\JsonResponse;
+
 
 class SondageController extends Controller
 {
     public function getSondages()
     {
-        // Récupérer tous les sondages
-        $sondages = SONDAGE::all();
 
-        // Parcourir chaque sondage pour ajouter les informations de vote
+        $maintenant = Carbon::now();
+
+        $sondages = SONDAGE::where('DATEFIN', '>', $maintenant)->get();
+
         foreach ($sondages as $sondage) {
-
             $votesPour = $sondage->votes()->where('AVIS', 'POUR')->count();
             $votesContre = $sondage->votes()->where('AVIS', 'CONTRE')->count();
             $sondage->votes_pour = $votesPour;
@@ -29,6 +30,7 @@ class SondageController extends Controller
         // Retourner la réponse JSON avec les données de vote ajoutées à chaque sondage
         return response()->json($sondages, 200, [], JSON_UNESCAPED_UNICODE);
     }
+
 
     public function getSondageById(Request $request, $sondageId)
     {
