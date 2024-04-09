@@ -42,11 +42,10 @@ class SondageController extends Controller
         return response()->json($sondage, 200, [], JSON_UNESCAPED_UNICODE);
     }
 
-    public function votePourSondage(Request $request)
+    public function votePourSondage(Request $request,$idSondage,$idUser)
     {
 
-        $userId = $request->userId;
-        $idSondage = $request->idSondage;
+        $userId = $idUser;
 
         $voteExist = AvoteSondage::where('IDSONDAGE', $idSondage)
             ->where('IDUTILISATEUR', $userId)
@@ -70,11 +69,10 @@ class SondageController extends Controller
 
 
 
-    public function voteContreSondage(Request $request)
+    public function voteContreSondage(Request $request,$idSondage,$idUser)
     {
 
-        $userId = $request->userId;
-        $idSondage = $request->idSondage;
+        $userId = $idUser;
 
         $voteExist = AvoteSondage::where('IDSONDAGE', $idSondage)
             ->where('IDUTILISATEUR', $userId)
