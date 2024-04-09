@@ -68,8 +68,8 @@ Route::get('/service/{serviceByid}', [ServiceController::class,"getServiceById"]
 Route::post('/reserver/{idUser}/{idService}', [ServiceController::class, "reserverService"]);
 Route::get('/reservation/{idUser}', [ServiceController::class, "getReservationUsers"]);
 Route::get('/reservation/{idUser}/{idService}', [ServiceController::class, "getReservationServiceByUser"]);
+Route::get('/reservation/cancel/{idReservation}',[ServiceController::class,'annulerReservation']);
 
-///reservation/{idUser}
 
 
 #----------# Cours #---------------#

@@ -94,9 +94,20 @@ class ServiceController extends Controller
             $autre->where('typeService',3)->get();
             return response()->json($autre);
         }
+    }
 
-
-
+    public function annulerReservation(Request $request, $idReservation)
+    {
+        $reservation=Reservation::find($idReservation);
+        if(!empty($reservation))
+        {
+            $reservation->delete();
+            return response()->json("Réservation supprimé avec succés");
+        }
+        else
+        {
+            return response()->json();
+        }
     }
 
 
