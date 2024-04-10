@@ -96,9 +96,9 @@ class ServiceController extends Controller
         }
     }
 
-    public function annulerReservation(Request $request, $idReservation)
+    public function annulerReservation(Request $request, $idReservation,$idUser)
     {
-        $reservation=Reservation::find($idReservation);
+        $reservation=Reservation::where('IDRESERVATION','=',$idReservation)->where('IDACHETEUR','=',$idUser)->first();
         if(!empty($reservation))
         {
             $reservation->delete();
