@@ -41,7 +41,7 @@ class ServiceController extends Controller
 
         $reservations = Reservation::where('IDACHETEUR', $idUser)
             ->whereHas('service', function ($query) use ($now) {
-                $query->where('DATEPREVUE', '<', $now);
+                $query->where('DATEPREVUE', '>=', $now);
             })
             ->with('service.typeService')
             ->get();
