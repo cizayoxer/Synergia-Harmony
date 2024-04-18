@@ -1,0 +1,929 @@
+openapi: 3.0.0
+info:
+  title: Documentation de l'API
+  version: 1.0.0
+  description: Documentation de l'API pour une application Laravel
+
+paths:
+  /users:
+    get:
+      summary: Récupérer tous les utilisateurs
+      responses:
+        200:
+          description: Succès. Liste des utilisateurs récupérée.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      summary: Ajouter un nouvel utilisateur
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+      responses:
+        200:
+          description: Succès. Utilisateur ajouté avec succès.
+
+  /user/{userId}:
+    get:
+      summary: Récupérer un utilisateur par son ID
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID de l'utilisateur à récupérer
+      responses:
+        200:
+          description: Succès. Utilisateur récupéré avec succès.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        404:
+          description: Utilisateur non trouvé.
+
+  /user/find/{email}:
+    get:
+      summary: Récupérer un utilisateur par son email
+      parameters:
+        - name: email
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Email de l'utilisateur à récupérer
+      responses:
+        200:
+          description: Succès. Utilisateur récupéré avec succès.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        404:
+          description: Utilisateur non trouvé.
+
+  /user/modify/{userId}:
+    put:
+      summary: Modifier un utilisateur existant
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID de l'utilisateur à modifier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+      responses:
+        200:
+          description: Succès. Utilisateur modifié avec succès.
+        404:
+          description: Utilisateur non trouvé.
+
+  /user/delete/{userId}:
+    delete:
+      summary: Supprimer un utilisateur
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID de l'utilisateur à supprimer
+      responses:
+        200:
+          description: Succès. Utilisateur supprimé avec succès.
+        404:
+          description: Utilisateur non trouvé.
+
+  /user/crediter/{userId}:
+    put:
+      summary: Créditer le solde d'un utilisateur
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID de l'utilisateur à créditer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+                  format: float
+                  minimum: 0
+                  description: Montant à créditer sur le solde de l'utilisateur
+      responses:
+        200:
+          description: Succès. Solde de l'utilisateur crédité avec succès.
+        404:
+          description: Utilisateur non trouvé.
+        400:
+          description: Montant invalide.
+
+  /user/verser/{userId}:
+    put:
+      summary: Débiter le solde d'un utilisateur
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID de l'utilisateur à débiter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+                  format: float
+                  minimum: 0
+                  description: Montant à débiter du solde de l'utilisateur
+      responses:
+        200:
+          description: Succès. Solde de l'utilisateur débité avec succès.
+        404:
+          description: Utilisateur non trouvé.
+        400:
+          description: Montant invalide.
+
+  /user/validation:
+    post:
+      summary: Valider un utilisateur
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserValidationInput'
+      responses:
+        200:
+          description: Succès. Utilisateur validé avec succès.
+        404:
+          description: Utilisateur non trouvé.
+        400:
+          description: Données de validation invalides.
+
+  /sports:
+    get:
+      summary: Récupérer tous les sports
+      responses:
+        200:
+          description: Succès. Liste des sports récupérée.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Sport'
+  /sport/{sportById}:
+    get:
+      summary: Récupérer un sport par son ID
+      parameters:
+        - name: sportById
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID du sport à récupérer
+      responses:
+        200:
+          description: Succès. Sport récupéré avec succès.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sport'
+        404:
+          description: Sport non trouvé.
+
+  /loisirs:
+    get:
+      summary: Récupérer tous les loisirs
+      responses:
+        200:
+          description: Succès. Liste des loisirs récupérée.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Loisir'
+  /loisir/{loisirByid}:
+    get:
+      summary: Récupérer un loisir par son ID
+      parameters:
+        - name: loisirByid
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID du loisir à récupérer
+      responses:
+        200:
+          description: Succès. Loisir récupéré avec succès.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Loisir'
+        404:
+          description: Loisir non trouvé.
+
+  /professeurs:
+    get:
+      summary: Récupérer tous les professeurs
+      responses:
+        200:
+          description: Succès. Liste des professeurs récupérée.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Professeur'
+  /professeur/{profByid}:
+    get:
+      summary: Récupérer un professeur par son ID
+      parameters:
+        - name: profByid
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID du professeur à récupérer
+      responses:
+        200:
+          description: Succès. Professeur récupéré avec succès.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Professeur'
+        404:
+          description: Professeur non trouvé.
+
+  /services:
+    get:
+      summary: Récupérer tous les services
+      responses:
+        200:
+          description: Succès. Liste des services récupérée.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Service'
+  /service/{serviceByid}:
+    get:
+      summary: Récupérer un service par son ID
+      parameters:
+        - name: serviceByid
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID du service à récupérer
+      responses:
+        200:
+          description: Succès. Service récupéré avec succès.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+        404:
+          description: Service non trouvé.
+
+  /reservation/{idUser}:
+    get:
+      summary: Récupérer les réservations d'un utilisateur
+      parameters:
+        - name: idUser
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID de l'utilisateur dont on veut récupérer les réservations
+      responses:
+        200:
+          description: Succès. Liste des réservations récupérée.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Reservation'
+
+  /reserver/{idUser}/{idService}:
+    post:
+      summary: Réserver un service pour un utilisateur
+      parameters:
+        - name: idUser
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID de l'utilisateur
+        - name: idService
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID du service à réserver
+      responses:
+        200:
+          description: Succès. Service réservé avec succès.
+        404:
+          description: Service non trouvé.
+
+  /reservation/{idUser}/{idService}:
+    get:
+      summary: Récupérer la réservation d'un utilisateur pour un service spécifique
+      parameters:
+        - name: idUser
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID de l'utilisateur
+        - name: idService
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID du service
+      responses:
+        200:
+          description: Succès. Réservation récupérée avec succès.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+        404:
+          description: Réservation non trouvée.
+
+  /reservation/cancel/{idReservation}/{idUser}:
+    get:
+      summary: Annuler la réservation d'un utilisateur
+      parameters:
+        - name: idReservation
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID de la réservation à annuler
+        - name: idUser
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID de l'utilisateur
+      responses:
+        200:
+          description: Succès. Réservation annulée avec succès.
+        404:
+          description: Réservation non trouvée.
+
+  /cours:
+    get:
+      summary: Récupérer tous les cours
+      responses:
+        200:
+          description: Succès. Liste des cours récupérée.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cour'
+  /cour/{courByid}:
+    get:
+      summary: Récupérer un cours par son ID
+      parameters:
+        - name: courByid
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID du cours à récupérer
+      responses:
+        200:
+          description: Succès. Cours récupéré avec succès.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cour'
+        404:
+          description: Cours non trouvé.
+
+  /annonces:
+    get:
+      summary: Récupérer toutes les annonces
+      responses:
+        200:
+          description: Succès. Liste des annonces récupérée.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Annonce'
+    post:
+      summary: Ajouter une nouvelle annonce
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnnonceInput'
+      responses:
+        200:
+          description: Succès. Annonce ajoutée avec succès.
+
+  /lastAnnonces:
+    get:
+      summary: Récupérer les annonces de la semaine précédente
+      responses:
+        200:
+          description: Succès. Liste des annonces de la semaine précédente récupérée.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Annonce'
+
+  /annonce/{annonceByid}:
+    get:
+      summary: Récupérer une annonce par son ID
+      parameters:
+        - name: annonceByid
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID de l'annonce à récupérer
+      responses:
+        200:
+          description: Succès. Annonce récupérée avec succès.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Annonce'
+        404:
+          description: Annonce non trouvée.
+
+  /annonce/delete/{annonceId}:
+    delete:
+      summary: Supprimer une annonce
+      parameters:
+        - name: annonceId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID de l'annonce à supprimer
+      responses:
+        200:
+          description: Succès. Annonce supprimée avec succès.
+        404:
+          description: Annonce non trouvée.
+
+  /annonce/add:
+    post:
+      summary: Ajouter une nouvelle annonce
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnnonceInput'
+      responses:
+        200:
+          description: Succès. Annonce ajoutée avec succès.
+
+  /annonces/last/{limit}:
+    get:
+      summary: Récupérer les dernières annonces
+      parameters:
+        - name: limit
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Nombre maximum d'annonces à récupérer
+      responses:
+        200:
+          description: Succès. Liste des dernières annonces récupérée.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Annonce'
+
+  /accueil:
+    get:
+      summary: Récupérer les informations d'accueil
+      responses:
+        200:
+          description: Succès. Informations d'accueil récupérées avec succès.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Accueil'
+
+  /sondages:
+    get:
+      summary: Récupérer tous les sondages
+      responses:
+        200:
+          description: Succès. Liste des sondages récupérée.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Sondage'
+
+  /sondage/{sondageByid}:
+    get:
+      summary: Récupérer un sondage par son ID
+      parameters:
+        - name: sondageByid
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID du sondage à récupérer
+      responses:
+        200:
+          description: Succès. Sondage récupéré avec succès.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sondage'
+        404:
+          description: Sondage non trouvé.
+
+  /sondage/votePour/{idSondage}/{idUser}:
+    get:
+      summary: Voter pour un sondage
+      parameters:
+        - name: idSondage
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID du sondage
+        - name: idUser
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID de l'utilisateur votant pour
+      responses:
+        200:
+          description: Succès. Vote pour le sondage enregistré avec succès.
+        404:
+          description: Sondage ou utilisateur non trouvé.
+
+  /sondage/voteContre/{idSondage}/{idUser}:
+    get:
+      summary: Voter contre un sondage
+      parameters:
+        - name: idSondage
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID du sondage
+        - name: idUser
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID de l'utilisateur votant contre
+      responses:
+        200:
+          description: Succès. Vote contre le sondage enregistré avec succès.
+        404:
+          description: Sondage ou utilisateur non trouvé.
+
+  /events/cinema:
+    get:
+      summary: Récupérer tous les événements cinéma
+      responses:
+        200:
+          description: Succès. Liste des événements cinéma récupérée.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Evenement'
+
+  /events/cinema/{idService}:
+    get:
+      summary: Récupérer les événements cinéma par ID de service
+      parameters:
+        - name: idService
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID du service lié aux événements cinéma
+      responses:
+        200:
+          description: Succès. Liste des événements cinéma récupérée pour le service spécifié.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Evenement'
+
+  /events/sport:
+    get:
+      summary: Récupérer tous les événements sportifs
+      responses:
+        200:
+          description: Succès. Liste des événements sportifs récupérée.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Evenement'
+
+  /events/sport/{idService}:
+    get:
+      summary: Récupérer les événements sportifs par ID de service
+      parameters:
+        - name: idService
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID du service lié aux événements sportifs
+      responses:
+        200:
+          description: Succès. Liste des événements sportifs récupérée pour le service spécifié.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Evenement'
+
+  /covoiturages:
+    get:
+      summary: Récupérer tous les covoiturages
+      responses:
+        200:
+          description: Succès. Liste des covoiturages récupérée.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Covoiturage'
+
+  /covoiturage/{covoiturageId}:
+    get:
+      summary: Récupérer un covoiturage par son ID
+      parameters:
+        - name: covoiturageId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID du covoiturage à récupérer
+      responses:
+        200:
+          description: Succès. Covoiturage récupéré avec succès.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Covoiturage'
+        404:
+          description: Covoiturage non trouvé.
+
+  /echangeCompetences:
+    get:
+      summary: Récupérer tous les échanges de compétences
+      responses:
+        200:
+          description: Succès. Liste des échanges de compétences récupérée.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EchangeCompetence'
+
+  /echangeCompetence/{echangeCompId}:
+    get:
+      summary: Récupérer un échange de compétences par son ID
+      parameters:
+        - name: echangeCompId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID de l'échange de compétences à récupérer
+      responses:
+        200:
+          description: Succès. Échange de compétences récupéré avec succès.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EchangeCompetence'
+        404:
+          description: Échange de compétences non trouvé.
+
+  /autres:
+    get:
+      summary: Récupérer tous les autres services
+      responses:
+        200:
+          description: Succès. Liste des autres services récupérée.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Service'
+
+  /autre/{idService}:
+    get:
+      summary: Récupérer un autre service par son ID
+      parameters:
+        - name: idService
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID du service à récupérer
+      responses:
+        200:
+          description: Succès. Autre service récupéré avec succès.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+        404:
+          description: Service non trouvé.
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+        # Ajouter d'autres propriétés si nécessaire
+    UserInput:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        # Ajouter d'autres propriétés si nécessaire
+    UserValidationInput:
+      type: object
+      properties:
+        id:
+          type: integer
+        validation_status:
+          type: boolean
+    Sport:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        # Ajouter d'autres propriétés si nécessaire
+    Loisir:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        # Ajouter d'autres propriétés si nécessaire
+    Professeur:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        # Ajouter d'autres propriétés si nécessaire
+    Service:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        # Ajouter d'autres propriétés si nécessaire
+    Reservation:
+      type: object
+      properties:
+        id:
+          type: integer
+        user_id:
+          type: integer
+        service_id:
+          type: integer
+        # Ajouter d'autres propriétés si nécessaire
+    Cour:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        # Ajouter d'autres propriétés si nécessaire
+    Annonce:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        # Ajouter d'autres propriétés si nécessaire
+    AnnonceInput:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        # Ajouter d'autres propriétés si nécessaire
+    Accueil:
+      type: object
+      properties:
+        welcome_message:
+          type: string
+        # Ajouter d'autres propriétés si nécessaire
+    Sondage:
+      type: object
+      properties:
+        id:
+          type: integer
+        question:
+          type: string
+        # Ajouter d'autres propriétés si nécessaire
+    Evenement:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        # Ajouter d'autres propriétés si nécessaire
+    Covoiturage:
+      type: object
+      properties:
+        id:
+          type: integer
+        destination:
+          type: string
+        # Ajouter d'autres propriétés si nécessaire
+    EchangeCompetence:
+      type: object
+      properties:
+        id:
+          type: integer
+        skill:
+          type: string
+        # Ajouter d'autres propriétés si nécessaire
+
