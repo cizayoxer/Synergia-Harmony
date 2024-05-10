@@ -35,29 +35,14 @@ Route::get('/users', [UserController::class, "getUsers"]);
 Route::get('/user/{userById}', [UserController::class, "getUserById"]);
 Route::get('/user/find/{email}', [UserController::class, "getUserByEmail"]);
 
-Route::post('/user/add', [UserController::class, "addUser"]);
-Route::put('/user/modify/{userId}', [UserController::class, "modifyUser"]);
-Route::delete('/user/delete/{userId}', [UserController::class, 'deleteUser']);
-Route::put('/user/crediter/{userId}', [UserController::class, "addMonnaie"]);
-Route::put('/user/verser/{userId}', [UserController::class, "removeMonnaie"]);
-
-Route::post("/user/validation", [UserController::class,"valideUser"]);
-
-
 #----------# Sports #---------------#
 Route::get('/sports', [SportController::class, "getSports"]);
 Route::get('/sport/{sportById}', [SportController::class, "getSportById"]);
 
 
 #----------# Loisirs #---------------#
-//Route::get('/loisirsType', [LoisirController::class, "getLoisirsType"]);
 Route::get('/loisirs', [LoisirController::class, "getLoisirs"]);
 Route::get('/loisir/{loisirByid}', [LoisirController::class, "getLoisirById"]);
-
-
-#----------# Professeurs #---------------#
-Route::get('/professeurs', [ProfesseurController::class, "getProfs"]);
-Route::get('/professeur/{profByid}', [ProfesseurController::class, "getProfById"]);
 
 
 #----------# Services #---------------#
@@ -73,7 +58,6 @@ Route::get('/reservation/{idUser}/{idService}', [ServiceController::class, "getR
 Route::get('/reservation/cancel/{idReservation}/{idUser}',[ServiceController::class,'annulerReservation']);
 
 
-
 #----------# Cours #---------------#
 Route::get('/cours', [CourController::class, "getCours"]);
 Route::get('/cour/{courByid}', [CourController::class,"getCourById"]);
@@ -83,13 +67,8 @@ Route::get('/cour/{courByid}', [CourController::class,"getCourById"]);
 Route::get('/annonces', [AnnonceController::class, "getAnnonces"]);
 Route::get("/lastAnnonces",[AnnonceController::class,"getAnnoncesSemainePrecedente"]);
 Route::get('/annonce/{annonceByid}', [AnnonceController::class,"getAnnonceById"]);
-Route::delete('/annonce/delete/{annonceId}', [AnnonceController::class, 'deleteAnnonce']);
-Route::post('/annonce/add', [AnnonceController::class, 'addAnnonce']);
 Route::get('/annonces/last/{limit}', [AnnonceController::class, "getLastAnnonces"]);
 
-
-#----------# Accueil #---------------#
-Route::get('/accueil', [AccueilController::class, "getAccueil"]);
 
 #----------# Sondage #---------------#
 Route::get('/sondages', [SondageController::class, "getSondages"]);
@@ -111,5 +90,6 @@ Route::get("/covoiturage/{covoiturageId}",[CovoiturageController::class,'getConv
 Route::get("/echangeCompetences",[EchangCompetController::class,'getAllEchanges']);
 Route::get("/echangeCompetence/{echangeCompId}",[EchangCompetController::class,'getEchangeById']);
 
+#----------# Autres #---------------#
 Route::get("/autres",[ServiceController::class,'getAutres']);
 Route::get("/autre/{idService}",[ServiceController::class,'getAutreById']);
