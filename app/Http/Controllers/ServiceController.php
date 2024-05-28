@@ -109,13 +109,19 @@ class ServiceController extends Controller
             return response()->json();
         }
     }
-    public function getServicesMultipleByUser(Request $request, $idUser)
+    public function getServicesByUser(Request $request, $idUser, $nbMax)
     {
         $now = Carbon::now(); // Récupère la date et l'heure actuelles
-
+        if($nbMax == 1)
+        {
+            $operateur = '=';
+        }
+        else{
+            $operateur = '>=';
+        }
         $reservations = Service::where('IDVENDEUR', $idUser)
             ->where('DATEPREVUE', '>=', $now)
-            ->where('NBPERSONNESMAX', '>', 1)
+            ->where('NBPERSONNESMAX', $operateur, $nbMax)
             ->with('typeService')
             ->get();
 
@@ -123,19 +129,5 @@ class ServiceController extends Controller
     }
 
 
-    public function getServicesUniqueByUser(Request $request, $idUser)
-    {
-
-
-        $now = Carbon::now(); // Récupère la date et l'heure actuelles
-
-        $reservations = Service::where('IDVENDEUR', $idUser)
-            ->where('DATEPREVUE', '>=', $now)
-            ->where('NBPERSONNESMAX', '=', 1)
-            ->with('typeService')
-            ->get();
-
-        return response()->json($reservations, 200, [], JSON_UNESCAPED_UNICODE);
-    }
 
 }

@@ -64,8 +64,7 @@ Route::get('/professeur/{profByid}', [ProfesseurController::class, "getProfById"
 Route::get('/services', [ServiceController::class, "getServices"]);
 Route::get('/service/{serviceByid}', [ServiceController::class,"getServiceById"]);
 
-Route::get('/services/unique/{idUser}', [ServiceController::class, "getServicesUniqueByUser"]);
-Route::get('/services/multiple/{idUser}', [ServiceController::class, "getServicesMultipleByUser"]);
+Route::get('/services/{idUser}/{nbMax}', [ServiceController::class, "getServicesByUser"]);
 
 #----------# Reserve #---------------#
 
