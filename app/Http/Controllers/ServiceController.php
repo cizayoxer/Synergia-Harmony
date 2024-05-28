@@ -109,6 +109,33 @@ class ServiceController extends Controller
             return response()->json();
         }
     }
+    public function getServicesMultipleByUser(Request $request, $idUser)
+    {
+        $now = Carbon::now(); // Récupère la date et l'heure actuelles
 
+        $reservations = Service::where('IDVENDEUR', $idUser)
+            ->where('DATEPREVUE', '>=', $now)
+            ->where('NBPERSONNESMAX', '>', 1)
+            ->with('typeService')
+            ->get();
+
+        return response()->json($reservations, 200, [], JSON_UNESCAPED_UNICODE);
+    }
+
+
+    public function getServicesUniqueByUser(Request $request, $idUser)
+    {
+
+
+        $now = Carbon::now(); // Récupère la date et l'heure actuelles
+
+        $reservations = Service::where('IDVENDEUR', $idUser)
+            ->where('DATEPREVUE', '>=', $now)
+            ->where('NBPERSONNESMAX', '=', 1)
+            ->with('typeService')
+            ->get();
+
+        return response()->json($reservations, 200, [], JSON_UNESCAPED_UNICODE);
+    }
 
 }

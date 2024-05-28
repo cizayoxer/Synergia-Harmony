@@ -64,6 +64,9 @@ Route::get('/professeur/{profByid}', [ProfesseurController::class, "getProfById"
 Route::get('/services', [ServiceController::class, "getServices"]);
 Route::get('/service/{serviceByid}', [ServiceController::class,"getServiceById"]);
 
+Route::get('/services/unique/{idUser}', [ServiceController::class, "getServicesUniqueByUser"]);
+Route::get('/services/multiple/{idUser}', [ServiceController::class, "getServicesMultipleByUser"]);
+
 #----------# Reserve #---------------#
 
 Route::get('/reservation/{idUser}', [ServiceController::class, "getReservationUsers"]);
@@ -71,7 +74,6 @@ Route::post('/reserver/{idUser}/{idService}', [ServiceController::class, "reserv
 
 Route::get('/reservation/{idUser}/{idService}', [ServiceController::class, "getReservationServiceByUser"]);
 Route::get('/reservation/cancel/{idReservation}/{idUser}',[ServiceController::class,'annulerReservation']);
-
 
 
 #----------# Cours #---------------#
